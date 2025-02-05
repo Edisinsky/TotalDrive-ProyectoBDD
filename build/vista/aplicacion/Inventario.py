@@ -8,6 +8,7 @@ from pathlib import Path
 # from tkinter import *
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+import subprocess
 
 
 OUTPUT_PATH = Path(__file__).parent
@@ -19,6 +20,29 @@ ASSETS_PATH = OUTPUT_PATH.parent /"assets" / "frame1"
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
+def abrir_vehiculo():
+    subprocess.Popen(["python", "Vehiculo.py"])
+    window.destroy()
+
+def abrir_cliente():
+    subprocess.Popen(["python", "Cliente.py"])
+    window.destroy()
+
+def abrir_servicio():
+    subprocess.Popen(["python", "Servicio.py"])
+    window.destroy()
+
+def abrir_reserva():
+    subprocess.Popen(["python", "Reserva.py"])
+    window.destroy()
+
+def abrir_mecanico():
+    subprocess.Popen(["python", "Mecanico.py"])
+    window.destroy()
+
+def abrir_proveedor():
+    subprocess.Popen(["python", "Proveedor.py"])
+    window.destroy()
 
 window = Tk()
 
@@ -26,25 +50,39 @@ window.geometry("987x617")
 window.configure(bg = "#FFFFFF")
 
 
+# Obtener el ancho y alto de la pantalla
+screen_width = window.winfo_screenwidth()  # Ancho de la pantalla
+screen_height = window.winfo_screenheight()  # Alto de la pantalla
+
+# Calcular la posición x e y para centrar la ventana
+x_position = (screen_width // 2) - (987 // 2)  # Centrar horizontalmente
+y_position = (screen_height // 2) - (617 // 2)  # Centrar verticalmente
+
+# Establecer la posición de la ventana
+window.geometry(f"987x617+{x_position}+{y_position}")
+
+# Crear el Canvas
 canvas = Canvas(
     window,
-    bg = "#FFFFFF",
-    height = 617,
-    width = 987,
-    bd = 0,
-    highlightthickness = 0,
-    relief = "ridge"
+    bg="#FFFFFF",
+    height=617,
+    width=987,
+    bd=0,
+    highlightthickness=0,
+    relief="ridge"
 )
+canvas.place(x=0, y=0)
 
-canvas.place(x = 0, y = 0)
+# Dibujar un rectángulo en el Canvas
 canvas.create_rectangle(
     0.0,
     0.0,
     209.0,
     617.0,
     fill="#006DB2",
-    outline="")
-
+    outline=""
+)
+#SEDE
 button_image_1 = PhotoImage(
     file=relative_to_assets("button_1.png"))
 button_1 = Button(
@@ -114,7 +152,7 @@ canvas.create_text(
     fill="#000000",
     font=("Inter", 13 * -1)
 )
-
+#AGREGAR REPUESTO
 button_image_2 = PhotoImage(
     file=relative_to_assets("button_2.png"))
 button_2 = Button(
@@ -130,7 +168,7 @@ button_2.place(
     width=99.0,
     height=40.0
 )
-
+#ACTUALIZAR REPUESTO
 button_image_3 = PhotoImage(
     file=relative_to_assets("button_3.png"))
 button_3 = Button(
@@ -146,7 +184,7 @@ button_3.place(
     width=113.0,
     height=40.0
 )
-
+#eliminar repuesto
 button_image_4 = PhotoImage(
     file=relative_to_assets("button_4.png"))
 button_4 = Button(
@@ -163,6 +201,8 @@ button_4.place(
     height=40.0
 )
 
+
+#LISTAR
 button_image_5 = PhotoImage(
     file=relative_to_assets("button_5.png"))
 button_5 = Button(
@@ -178,7 +218,7 @@ button_5.place(
     width=84.0,
     height=40.0
 )
-
+#REPUESTOS CON STOCK CRITICO
 button_image_6 = PhotoImage(
     file=relative_to_assets("button_6.png"))
 button_6 = Button(
@@ -194,7 +234,7 @@ button_6.place(
     width=184.0,
     height=37.0
 )
-
+#CANTIDAD DISPONIBLE
 button_image_7 = PhotoImage(
     file=relative_to_assets("button_7.png"))
 button_7 = Button(
@@ -210,7 +250,7 @@ button_7.place(
     width=155.0,
     height=32.0
 )
-
+#LIMPIAR CAMPOS
 button_image_8 = PhotoImage(
     file=relative_to_assets("button_8.png"))
 button_8 = Button(
@@ -234,7 +274,7 @@ image_1 = canvas.create_image(
     47.0,
     image=image_image_1
 )
-
+#INVENTARIO
 button_image_9 = PhotoImage(
     file=relative_to_assets("button_9.png"))
 button_9 = Button(
@@ -250,14 +290,14 @@ button_9.place(
     width=201.0,
     height=34.0
 )
-
+#CLIENTE
 button_image_10 = PhotoImage(
     file=relative_to_assets("button_10.png"))
 button_10 = Button(
     image=button_image_10,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_10 clicked"),
+    command=abrir_cliente,
     relief="flat"
 )
 button_10.place(
@@ -266,14 +306,14 @@ button_10.place(
     width=201.0,
     height=34.0
 )
-
+#SERVICIO
 button_image_11 = PhotoImage(
     file=relative_to_assets("button_11.png"))
 button_11 = Button(
     image=button_image_11,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_11 clicked"),
+    command=abrir_servicio,
     relief="flat"
 )
 button_11.place(
@@ -282,14 +322,14 @@ button_11.place(
     width=201.0,
     height=34.0
 )
-
+#RESERVA
 button_image_12 = PhotoImage(
     file=relative_to_assets("button_12.png"))
 button_12 = Button(
     image=button_image_12,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_12 clicked"),
+    command=abrir_reserva,
     relief="flat"
 )
 button_12.place(
@@ -298,14 +338,14 @@ button_12.place(
     width=201.0,
     height=34.0
 )
-
+#MECANICO
 button_image_13 = PhotoImage(
     file=relative_to_assets("button_13.png"))
 button_13 = Button(
     image=button_image_13,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_13 clicked"),
+    command=abrir_mecanico,
     relief="flat"
 )
 button_13.place(
@@ -314,14 +354,14 @@ button_13.place(
     width=201.0,
     height=34.0
 )
-
+#PROVEEDOR
 button_image_14 = PhotoImage(
     file=relative_to_assets("button_14.png"))
 button_14 = Button(
     image=button_image_14,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_14 clicked"),
+    command=abrir_proveedor,
     relief="flat"
 )
 button_14.place(
@@ -330,14 +370,14 @@ button_14.place(
     width=201.0,
     height=34.0
 )
-
+#VEHICULO
 button_image_15 = PhotoImage(
     file=relative_to_assets("button_15.png"))
 button_15 = Button(
     image=button_image_15,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_15 clicked"),
+    command=abrir_vehiculo,
     relief="flat"
 )
 button_15.place(
@@ -354,7 +394,7 @@ canvas.create_rectangle(
     583.0,
     fill="#007AFF",
     outline="")
-
+#codigo de repuesto
 entry_image_1 = PhotoImage(
     file=relative_to_assets("entry_1.png"))
 entry_bg_1 = canvas.create_image(
@@ -374,7 +414,7 @@ entry_1.place(
     width=141.0,
     height=24.0
 )
-
+#TALLER
 entry_image_2 = PhotoImage(
     file=relative_to_assets("entry_2.png"))
 entry_bg_2 = canvas.create_image(
@@ -388,13 +428,14 @@ entry_2 = Entry(
     fg="#000716",
     highlightthickness=0
 )
+
 entry_2.place(
     x=443.0,
     y=88.0,
     width=141.0,
     height=24.0
 )
-
+#CANTIDAD DISPONIBLE
 entry_image_3 = PhotoImage(
     file=relative_to_assets("entry_3.png"))
 entry_bg_3 = canvas.create_image(
@@ -414,7 +455,9 @@ entry_3.place(
     width=70.0,
     height=24.0
 )
+entry_3.insert(0, "Cantidad disponible")
 
+#PROVEEDOR
 entry_image_4 = PhotoImage(
     file=relative_to_assets("entry_4.png"))
 entry_bg_4 = canvas.create_image(
@@ -434,7 +477,9 @@ entry_4.place(
     width=141.0,
     height=24.0
 )
+entry_4.insert(0, "Taller")
 
+#NOMBRE DEL REPUESTO
 entry_image_5 = PhotoImage(
     file=relative_to_assets("entry_5.png"))
 entry_bg_5 = canvas.create_image(
@@ -454,7 +499,6 @@ entry_5.place(
     width=141.0,
     height=24.0
 )
-
 image_image_2 = PhotoImage(
     file=relative_to_assets("image_2.png"))
 image_2 = canvas.create_image(

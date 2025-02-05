@@ -8,7 +8,7 @@ from pathlib import Path
 # from tkinter import *
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
-
+import subprocess
 
 OUTPUT_PATH = Path(__file__).parent
 
@@ -19,6 +19,33 @@ ASSETS_PATH = OUTPUT_PATH.parent /"assets" / "frame4"
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
+def abrir_servicio_reservado():
+    subprocess.Popen(["python", "Servicio_Reservado.py"])
+    window.destroy()
+
+def abrir_inventario():
+    subprocess.Popen(["python", "Inventario.py"])
+    window.destroy()
+
+def abrir_vehiculo():
+    subprocess.Popen(["python", "Vehiculo.py"])
+    window.destroy()
+
+def abrir_cliente():
+    subprocess.Popen(["python", "Cliente.py"])
+    window.destroy()
+
+def abrir_servicio():
+    subprocess.Popen(["python", "Servicio.py"])
+    window.destroy()
+
+def abrir_mecanico():
+    subprocess.Popen(["python", "Mecanico.py"])
+    window.destroy()
+
+def abrir_proveedor():
+    subprocess.Popen(["python", "Proveedor.py"])
+    window.destroy()
 
 window = Tk()
 
@@ -26,17 +53,38 @@ window.geometry("987x617")
 window.configure(bg = "#FFFFFF")
 
 
+# Obtener el ancho y alto de la pantalla
+screen_width = window.winfo_screenwidth()  # Ancho de la pantalla
+screen_height = window.winfo_screenheight()  # Alto de la pantalla
+
+# Calcular la posición x e y para centrar la ventana
+x_position = (screen_width // 2) - (987 // 2)  # Centrar horizontalmente
+y_position = (screen_height // 2) - (617 // 2)  # Centrar verticalmente
+
+# Establecer la posición de la ventana
+window.geometry(f"987x617+{x_position}+{y_position}")
+
+# Crear el Canvas
 canvas = Canvas(
     window,
-    bg = "#FFFFFF",
-    height = 617,
-    width = 987,
-    bd = 0,
-    highlightthickness = 0,
-    relief = "ridge"
+    bg="#FFFFFF",
+    height=617,
+    width=987,
+    bd=0,
+    highlightthickness=0,
+    relief="ridge"
 )
+canvas.place(x=0, y=0)
 
-canvas.place(x = 0, y = 0)
+# Dibujar un rectángulo en el Canvas
+canvas.create_rectangle(
+    0.0,
+    0.0,
+    209.0,
+    617.0,
+    fill="#006DB2",
+    outline=""
+)
 canvas.create_rectangle(
     0.0,
     0.0,
@@ -185,7 +233,7 @@ button_6 = Button(
     image=button_image_6,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_6 clicked"),
+    command=abrir_servicio_reservado,
     relief="flat"
 )
 button_6.place(
@@ -209,7 +257,7 @@ button_7 = Button(
     image=button_image_7,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_7 clicked"),
+    command=abrir_inventario,
     relief="flat"
 )
 button_7.place(
@@ -225,7 +273,7 @@ button_8 = Button(
     image=button_image_8,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_8 clicked"),
+    command=abrir_cliente,
     relief="flat"
 )
 button_8.place(
@@ -241,7 +289,7 @@ button_9 = Button(
     image=button_image_9,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_9 clicked"),
+    command=abrir_servicio,
     relief="flat"
 )
 button_9.place(
@@ -273,7 +321,7 @@ button_11 = Button(
     image=button_image_11,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_11 clicked"),
+    command=abrir_mecanico,
     relief="flat"
 )
 button_11.place(
@@ -289,7 +337,7 @@ button_12 = Button(
     image=button_image_12,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_12 clicked"),
+    command=abrir_proveedor,
     relief="flat"
 )
 button_12.place(
@@ -305,7 +353,7 @@ button_13 = Button(
     image=button_image_13,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_13 clicked"),
+    command=abrir_vehiculo,
     relief="flat"
 )
 button_13.place(

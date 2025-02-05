@@ -8,6 +8,7 @@ from pathlib import Path
 # from tkinter import *
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+import subprocess
 
 OUTPUT_PATH = Path(__file__).parent
 
@@ -18,6 +19,9 @@ ASSETS_PATH = OUTPUT_PATH.parent /"assets" / "frame7"
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
+def abrir_reserva():
+    subprocess.Popen(["python", "Reserva.py"])
+    window.destroy()
 
 window = Tk()
 
@@ -25,17 +29,28 @@ window.geometry("536x654")
 window.configure(bg = "#FFFFFF")
 
 
+# Obtener el ancho y alto de la pantalla
+screen_width = window.winfo_screenwidth()  # Ancho de la pantalla
+screen_height = window.winfo_screenheight()  # Alto de la pantalla
+
+# Calcular la posición x e y para centrar la ventana
+x_position = (screen_width // 2) - (987 // 2)  # Centrar horizontalmente
+y_position = (screen_height // 2) - (617 // 2)  # Centrar verticalmente
+
+# Establecer la posición de la ventana
+window.geometry(f"987x617+{x_position}+{y_position}")
+
+# Crear el Canvas
 canvas = Canvas(
     window,
-    bg = "#FFFFFF",
-    height = 654,
-    width = 536,
-    bd = 0,
-    highlightthickness = 0,
-    relief = "ridge"
+    bg="#FFFFFF",
+    height=617,
+    width=987,
+    bd=0,
+    highlightthickness=0,
+    relief="ridge"
 )
-
-canvas.place(x = 0, y = 0)
+canvas.place(x=0, y=0)
 canvas.create_text(
     89.0,
     92.0,
@@ -246,7 +261,7 @@ button_6 = Button(
     image=button_image_6,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_6 clicked"),
+    command=abrir_reserva,
     relief="flat"
 )
 button_6.place(

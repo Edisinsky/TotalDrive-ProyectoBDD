@@ -1,12 +1,13 @@
-from sqlalchemy import create_engine, text
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+
 # Datos de conexión (ajusta los valores según tu configuración)
 DB_DRIVER = "ODBC Driver 17 for SQL Server"
 
 # # Conexión con el nodo de Quito
 DATABASE_QUITO = "TallerQuito"
 SERVER_QUITO = "CHESCO"
-USERNAME =  "quito"
+USERNAME =  "Quito"
 PASSWORD = "1234"
 
 # Conexión con el nodo de Cuenca
