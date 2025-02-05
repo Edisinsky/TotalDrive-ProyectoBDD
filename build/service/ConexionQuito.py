@@ -6,7 +6,7 @@ DB_DRIVER = "ODBC Driver 17 for SQL Server"
 # # Conexión con el nodo de Quito
 DATABASE_QUITO = "TallerQuito"
 SERVER_QUITO = "CHESCO"
-USERNAME =  "Quito"
+USERNAME =  "quito"
 PASSWORD = "1234"
 
 # Conexión con el nodo de Cuenca
@@ -36,7 +36,8 @@ try:
     session_quito = SessionQuito()
 
     # Ejecutar una consulta de prueba
-    result = session_quito.execute(text("SELECT "))
+    result = session_quito.execute(text("SELECT * FROM Mecanico")).fetchall()
+    print(result)
     print(f"✅ Conexión exitosa a {DATABASE_QUITO} en {SERVER_QUITO}")
 
 except Exception as e:

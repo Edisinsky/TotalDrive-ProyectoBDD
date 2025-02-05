@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from build.models.MecanicoModel import Mecanico
-class MecanicoService:
+class MecanicoEntity:
 
 
     def __init__(self, db: Session):

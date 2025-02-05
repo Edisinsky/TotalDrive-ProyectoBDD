@@ -9,10 +9,11 @@ from pathlib import Path
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
+
 OUTPUT_PATH = Path(__file__).parent
 
 # Definir la ruta relativa a la carpeta de assets
-ASSETS_PATH = OUTPUT_PATH.parent / "assets" / "frame3"
+ASSETS_PATH = OUTPUT_PATH.parent /"assets" / "frame3"
 
 
 def relative_to_assets(path: str) -> Path:
@@ -348,6 +349,14 @@ entry_3.place(
     height=24.0
 )
 
+image_image_2 = PhotoImage(
+    file=relative_to_assets("image_2.png"))
+image_2 = canvas.create_image(
+    303.0,
+    299.0,
+    image=image_image_2
+)
+
 button_image_13 = PhotoImage(
     file=relative_to_assets("button_13.png"))
 button_13 = Button(
@@ -358,18 +367,10 @@ button_13 = Button(
     relief="flat"
 )
 button_13.place(
-    x=3.0,
-    y=539.0,
-    width=202.0,
-    height=40.0
-)
-
-image_image_2 = PhotoImage(
-    file=relative_to_assets("image_2.png"))
-image_2 = canvas.create_image(
-    303.0,
-    299.0,
-    image=image_image_2
+    x=354.0,
+    y=273.0,
+    width=196.0,
+    height=52.0
 )
 
 button_image_14 = PhotoImage(
@@ -382,10 +383,10 @@ button_14 = Button(
     relief="flat"
 )
 button_14.place(
-    x=358.0,
-    y=291.0,
-    width=248.0,
-    height=22.0
+    x=0.0,
+    y=527.0,
+    width=202.0,
+    height=40.0
 )
 window.resizable(False, False)
 window.mainloop()
