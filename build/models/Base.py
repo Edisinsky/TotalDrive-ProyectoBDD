@@ -1,4 +1,7 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, DATETIME
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import MetaData
 
-Base = declarative_base()
+# Usa MetaData para mapear las tablas existentes
+metadata = MetaData()
+
+Base = declarative_base(metadata=metadata)

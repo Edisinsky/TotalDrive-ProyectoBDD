@@ -1,3 +1,4 @@
+from sqlalchemy import Column, Integer, String, ForeignKey, DATETIME
 from build.models.Base import Base
 
 class Reserva(Base):
