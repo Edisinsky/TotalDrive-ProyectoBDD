@@ -179,19 +179,27 @@ image_1 = canvas.create_image(
 
 button_image_6 = PhotoImage(
     file=relative_to_assets("button_6.png"))
+
+def open_frame1():
+    window.destroy()  # Cierra la ventana actual
+    import Inventario  # Importa y ejecuta el código de la otra ventana
+
+
 button_6 = Button(
     image=button_image_6,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_6 clicked"),
+    command=open_frame1,  # Llama a la función que abre la nueva ventana
     relief="flat"
 )
+
 button_6.place(
     x=5.0,
     y=174.0,
     width=201.0,
     height=34.0
 )
+
 
 button_image_7 = PhotoImage(
     file=relative_to_assets("button_7.png"))
@@ -416,5 +424,6 @@ button_14.place(
     width=248.0,
     height=22.0
 )
+
 window.resizable(False, False)
 window.mainloop()
