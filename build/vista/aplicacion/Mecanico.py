@@ -11,7 +11,9 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\Eddy Castro\Desktop\build\assets\frame6")
+
+# Definir la ruta relativa a la carpeta de assets
+ASSETS_PATH = OUTPUT_PATH.parent /"assets" / "frame5"
 
 
 def relative_to_assets(path: str) -> Path:
@@ -36,9 +38,9 @@ canvas = Canvas(
 
 canvas.place(x = 0, y = 0)
 canvas.create_rectangle(
+    5.0,
     0.0,
-    0.0,
-    209.0,
+    214.0,
     617.0,
     fill="#006DB2",
     outline="")
@@ -63,7 +65,7 @@ canvas.create_text(
     267.0,
     50.0,
     anchor="nw",
-    text="Código de proveedor: ",
+    text="Código de mecánico: ",
     fill="#000000",
     font=("Inter", 13 * -1)
 )
@@ -78,28 +80,28 @@ canvas.create_text(
 )
 
 canvas.create_text(
-    258.0,
-    101.0,
+    261.0,
+    102.0,
     anchor="nw",
-    text="Nombre del proveedor:",
+    text="Nombre del Mecánico:",
     fill="#000000",
     font=("Inter", 13 * -1)
 )
 
 canvas.create_text(
-    624.999971523881,
-    47.0,
+    667.999971523881,
+    55.0,
     anchor="nw",
-    text="Correo del proveedor:",
+    text="Taller:",
     fill="#000000",
     font=("Inter", 13 * -1)
 )
 
 canvas.create_text(
-    258.0000020414591,
+    319.0000020414591,
     153.0,
     anchor="nw",
-    text="Teléfono del proveedor:",
+    text="Especialidad:",
     fill="#000000",
     font=("Inter", 13 * -1)
 )
@@ -162,8 +164,8 @@ button_5 = Button(
     relief="flat"
 )
 button_5.place(
-    x=416.0,
-    y=210.0,
+    x=423.0,
+    y=212.0,
     width=84.0,
     height=40.0
 )
@@ -283,7 +285,7 @@ button_12 = Button(
 )
 button_12.place(
     x=2.0,
-    y=478.0,
+    y=468.0,
     width=201.0,
     height=34.0
 )
@@ -306,17 +308,17 @@ button_13.place(
 
 canvas.create_rectangle(
     248.0,
-    338.0,
+    340.0,
     952.0,
-    594.0,
-    fill="#DC070B",
+    596.0,
+    fill="#FFC107",
     outline="")
 
 entry_image_1 = PhotoImage(
     file=relative_to_assets("entry_1.png"))
 entry_bg_1 = canvas.create_image(
     499.5,
-    56.0,
+    58.0,
     image=entry_image_1
 )
 entry_1 = Entry(
@@ -327,7 +329,7 @@ entry_1 = Entry(
 )
 entry_1.place(
     x=429.0,
-    y=43.0,
+    y=45.0,
     width=141.0,
     height=24.0
 )
@@ -375,7 +377,7 @@ entry_3.place(
 entry_image_4 = PhotoImage(
     file=relative_to_assets("entry_4.png"))
 entry_bg_4 = canvas.create_image(
-    851.5,
+    800.5,
     55.0,
     image=entry_image_4
 )
@@ -386,7 +388,7 @@ entry_4 = Entry(
     highlightthickness=0
 )
 entry_4.place(
-    x=781.0,
+    x=730.0,
     y=42.0,
     width=141.0,
     height=24.0
@@ -395,8 +397,8 @@ entry_4.place(
 image_image_2 = PhotoImage(
     file=relative_to_assets("image_2.png"))
 image_2 = canvas.create_image(
-    299.0,
-    295.0,
+    302.0,
+    285.0,
     image=image_image_2
 )
 
@@ -410,10 +412,10 @@ button_14 = Button(
     relief="flat"
 )
 button_14.place(
-    x=366.0,
-    y=278.0,
-    width=191.0,
-    height=33.0
+    x=358.0,
+    y=269.0,
+    width=303.0,
+    height=31.0
 )
 
 button_image_15 = PhotoImage(
@@ -426,9 +428,9 @@ button_15 = Button(
     relief="flat"
 )
 button_15.place(
-    x=581.0,
-    y=280.0,
-    width=320.0,
+    x=698.0,
+    y=270.0,
+    width=187.0,
     height=28.0
 )
 window.resizable(False, False)

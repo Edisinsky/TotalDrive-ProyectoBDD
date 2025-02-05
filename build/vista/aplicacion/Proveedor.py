@@ -9,9 +9,10 @@ from pathlib import Path
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
-
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\Eddy Castro\Downloads\Interfaces BDD/build/assets/frame6")
+
+# Definir la ruta relativa a la carpeta de assets
+ASSETS_PATH = OUTPUT_PATH.parent /"assets" / "frame6"
 
 
 def relative_to_assets(path: str) -> Path:
@@ -42,6 +43,22 @@ canvas.create_rectangle(
     617.0,
     fill="#006DB2",
     outline="")
+
+button_image_1 = PhotoImage(
+    file=relative_to_assets("button_1.png"))
+button_1 = Button(
+    image=button_image_1,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: print("button_1 clicked"),
+    relief="flat"
+)
+button_1.place(
+    x=2.0,
+    y=526.0,
+    width=202.0,
+    height=40.0
+)
 
 canvas.create_text(
     267.0,
@@ -88,22 +105,6 @@ canvas.create_text(
     font=("Inter", 13 * -1)
 )
 
-button_image_1 = PhotoImage(
-    file=relative_to_assets("button_1.png"))
-button_1 = Button(
-    image=button_image_1,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_1 clicked"),
-    relief="flat"
-)
-button_1.place(
-    x=279.0,
-    y=210.0,
-    width=99.0,
-    height=40.0
-)
-
 button_image_2 = PhotoImage(
     file=relative_to_assets("button_2.png"))
 button_2 = Button(
@@ -114,9 +115,9 @@ button_2 = Button(
     relief="flat"
 )
 button_2.place(
-    x=543.0,
+    x=279.0,
     y=210.0,
-    width=113.0,
+    width=99.0,
     height=40.0
 )
 
@@ -130,9 +131,9 @@ button_3 = Button(
     relief="flat"
 )
 button_3.place(
-    x=701.0,
-    y=211.0,
-    width=100.0,
+    x=543.0,
+    y=210.0,
+    width=113.0,
     height=40.0
 )
 
@@ -146,9 +147,9 @@ button_4 = Button(
     relief="flat"
 )
 button_4.place(
-    x=416.0,
-    y=210.0,
-    width=84.0,
+    x=701.0,
+    y=211.0,
+    width=100.0,
     height=40.0
 )
 
@@ -162,6 +163,22 @@ button_5 = Button(
     relief="flat"
 )
 button_5.place(
+    x=416.0,
+    y=210.0,
+    width=84.0,
+    height=40.0
+)
+
+button_image_6 = PhotoImage(
+    file=relative_to_assets("button_6.png"))
+button_6 = Button(
+    image=button_image_6,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: print("button_6 clicked"),
+    relief="flat"
+)
+button_6.place(
     x=839.0,
     y=210.0,
     width=96.0,
@@ -176,22 +193,6 @@ image_1 = canvas.create_image(
     image=image_image_1
 )
 
-button_image_6 = PhotoImage(
-    file=relative_to_assets("button_6.png"))
-button_6 = Button(
-    image=button_image_6,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_6 clicked"),
-    relief="flat"
-)
-button_6.place(
-    x=5.0,
-    y=174.0,
-    width=201.0,
-    height=34.0
-)
-
 button_image_7 = PhotoImage(
     file=relative_to_assets("button_7.png"))
 button_7 = Button(
@@ -203,7 +204,7 @@ button_7 = Button(
 )
 button_7.place(
     x=5.0,
-    y=275.0,
+    y=174.0,
     width=201.0,
     height=34.0
 )
@@ -219,7 +220,7 @@ button_8 = Button(
 )
 button_8.place(
     x=5.0,
-    y=327.0,
+    y=275.0,
     width=201.0,
     height=34.0
 )
@@ -235,7 +236,7 @@ button_9 = Button(
 )
 button_9.place(
     x=5.0,
-    y=376.0,
+    y=327.0,
     width=201.0,
     height=34.0
 )
@@ -251,7 +252,7 @@ button_10 = Button(
 )
 button_10.place(
     x=5.0,
-    y=421.0,
+    y=376.0,
     width=201.0,
     height=34.0
 )
@@ -266,59 +267,11 @@ button_11 = Button(
     relief="flat"
 )
 button_11.place(
-    x=2.0,
-    y=478.0,
+    x=5.0,
+    y=421.0,
     width=201.0,
     height=34.0
 )
-
-image_image_2 = PhotoImage(
-    file=relative_to_assets("image_2.png"))
-image_2 = canvas.create_image(
-    105.0,
-    243.0,
-    image=image_image_2
-)
-
-canvas.create_rectangle(
-    248.0,
-    340.0,
-    952.0,
-    596.0,
-    fill="#DC070B",
-    outline="")
-
-canvas.create_rectangle(
-    416.0,
-    43.0,
-    583.0,
-    69.0,
-    fill="#A3CEEF",
-    outline="")
-
-canvas.create_rectangle(
-    416.0,
-    96.0,
-    583.0,
-    122.0,
-    fill="#A3CEEF",
-    outline="")
-
-canvas.create_rectangle(
-    416.0,
-    149.0,
-    583.0,
-    175.0,
-    fill="#A3CEEF",
-    outline="")
-
-canvas.create_rectangle(
-    768.0,
-    42.0,
-    935.0,
-    68.0,
-    fill="#A3CEEF",
-    outline="")
 
 button_image_12 = PhotoImage(
     file=relative_to_assets("button_12.png"))
@@ -330,18 +283,10 @@ button_12 = Button(
     relief="flat"
 )
 button_12.place(
-    x=3.0,
-    y=539.0,
-    width=202.0,
-    height=40.0
-)
-
-image_image_3 = PhotoImage(
-    file=relative_to_assets("image_3.png"))
-image_3 = canvas.create_image(
-    299.0,
-    295.0,
-    image=image_image_3
+    x=2.0,
+    y=478.0,
+    width=201.0,
+    height=34.0
 )
 
 button_image_13 = PhotoImage(
@@ -354,10 +299,106 @@ button_13 = Button(
     relief="flat"
 )
 button_13.place(
-    x=363.0,
-    y=284.0,
-    width=189.0,
-    height=22.0
+    x=5.0,
+    y=226.0,
+    width=201.0,
+    height=34.0
+)
+
+canvas.create_rectangle(
+    248.0,
+    338.0,
+    952.0,
+    594.0,
+    fill="#DC070B",
+    outline="")
+
+entry_image_1 = PhotoImage(
+    file=relative_to_assets("entry_1.png"))
+entry_bg_1 = canvas.create_image(
+    499.5,
+    56.0,
+    image=entry_image_1
+)
+entry_1 = Entry(
+    bd=0,
+    bg="#A3CEEF",
+    fg="#000716",
+    highlightthickness=0
+)
+entry_1.place(
+    x=429.0,
+    y=43.0,
+    width=141.0,
+    height=24.0
+)
+
+entry_image_2 = PhotoImage(
+    file=relative_to_assets("entry_2.png"))
+entry_bg_2 = canvas.create_image(
+    499.5,
+    109.0,
+    image=entry_image_2
+)
+entry_2 = Entry(
+    bd=0,
+    bg="#A3CEEF",
+    fg="#000716",
+    highlightthickness=0
+)
+entry_2.place(
+    x=429.0,
+    y=96.0,
+    width=141.0,
+    height=24.0
+)
+
+entry_image_3 = PhotoImage(
+    file=relative_to_assets("entry_3.png"))
+entry_bg_3 = canvas.create_image(
+    499.5,
+    162.0,
+    image=entry_image_3
+)
+entry_3 = Entry(
+    bd=0,
+    bg="#A3CEEF",
+    fg="#000716",
+    highlightthickness=0
+)
+entry_3.place(
+    x=429.0,
+    y=149.0,
+    width=141.0,
+    height=24.0
+)
+
+entry_image_4 = PhotoImage(
+    file=relative_to_assets("entry_4.png"))
+entry_bg_4 = canvas.create_image(
+    851.5,
+    55.0,
+    image=entry_image_4
+)
+entry_4 = Entry(
+    bd=0,
+    bg="#A3CEEF",
+    fg="#000716",
+    highlightthickness=0
+)
+entry_4.place(
+    x=781.0,
+    y=42.0,
+    width=141.0,
+    height=24.0
+)
+
+image_image_2 = PhotoImage(
+    file=relative_to_assets("image_2.png"))
+image_2 = canvas.create_image(
+    299.0,
+    295.0,
+    image=image_image_2
 )
 
 button_image_14 = PhotoImage(
@@ -370,10 +411,26 @@ button_14 = Button(
     relief="flat"
 )
 button_14.place(
-    x=575.0,
-    y=283.0,
+    x=366.0,
+    y=278.0,
+    width=191.0,
+    height=33.0
+)
+
+button_image_15 = PhotoImage(
+    file=relative_to_assets("button_15.png"))
+button_15 = Button(
+    image=button_image_15,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: print("button_15 clicked"),
+    relief="flat"
+)
+button_15.place(
+    x=581.0,
+    y=280.0,
     width=320.0,
-    height=22.0
+    height=28.0
 )
 window.resizable(False, False)
 window.mainloop()
