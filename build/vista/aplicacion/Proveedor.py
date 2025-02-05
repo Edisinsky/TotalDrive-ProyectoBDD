@@ -48,24 +48,38 @@ window.geometry("987x617")
 window.configure(bg = "#FFFFFF")
 
 
+# Obtener el ancho y alto de la pantalla
+screen_width = window.winfo_screenwidth()  # Ancho de la pantalla
+screen_height = window.winfo_screenheight()  # Alto de la pantalla
+
+# Calcular la posición x e y para centrar la ventana
+x_position = (screen_width // 2) - (987 // 2)  # Centrar horizontalmente
+y_position = (screen_height // 2) - (617 // 2)  # Centrar verticalmente
+
+# Establecer la posición de la ventana
+window.geometry(f"987x617+{x_position}+{y_position}")
+
+# Crear el Canvas
 canvas = Canvas(
     window,
-    bg = "#FFFFFF",
-    height = 617,
-    width = 987,
-    bd = 0,
-    highlightthickness = 0,
-    relief = "ridge"
+    bg="#FFFFFF",
+    height=617,
+    width=987,
+    bd=0,
+    highlightthickness=0,
+    relief="ridge"
 )
+canvas.place(x=0, y=0)
 
-canvas.place(x = 0, y = 0)
+# Dibujar un rectángulo en el Canvas
 canvas.create_rectangle(
     0.0,
     0.0,
     209.0,
     617.0,
     fill="#006DB2",
-    outline="")
+    outline=""
+)
 
 button_image_1 = PhotoImage(
     file=relative_to_assets("button_1.png"))

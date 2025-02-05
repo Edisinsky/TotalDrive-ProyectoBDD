@@ -28,7 +28,6 @@ engine_quito = create_engine(DB_URL_QUITO)
 #engine_cuenca = create_engine(DB_URL_CUENCA)
 
 # Crear las sesiones para interactuar con la base de datos
-#SessionQuito = sessionmaker(bind=engine_quito)
-SessionCuenca = sessionmaker(bind=engine_cuenca)
+SessionQuito = sessionmaker(bind=engine_quito)
 #session_quito = SessionQuito()
 session_quito = SessionQuito()
