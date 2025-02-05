@@ -8,6 +8,7 @@ from pathlib import Path
 # from tkinter import *
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+import subprocess
 
 OUTPUT_PATH = Path(__file__).parent
 
@@ -18,6 +19,9 @@ ASSETS_PATH = OUTPUT_PATH.parent /"assets" / "frame7"
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
+def abrir_reserva():
+    subprocess.Popen(["python", "Reserva.py"])
+    window.destroy()
 
 window = Tk()
 
@@ -246,7 +250,7 @@ button_6 = Button(
     image=button_image_6,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_6 clicked"),
+    command=abrir_reserva,
     relief="flat"
 )
 button_6.place(

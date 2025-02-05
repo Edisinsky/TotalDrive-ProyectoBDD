@@ -8,6 +8,7 @@ from pathlib import Path
 # from tkinter import *
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+import subprocess
 
 
 OUTPUT_PATH = Path(__file__).parent
@@ -19,6 +20,29 @@ ASSETS_PATH = OUTPUT_PATH.parent /"assets" / "frame0"
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
+def abrir_inventario():
+    subprocess.Popen(["python", "Inventario.py"])
+    window.destroy()
+
+def abrir_cliente():
+    subprocess.Popen(["python", "Cliente.py"])
+    window.destroy()
+
+def abrir_servicio():
+    subprocess.Popen(["python", "Servicio.py"])
+    window.destroy()
+
+def abrir_reserva():
+    subprocess.Popen(["python", "Reserva.py"])
+    window.destroy()
+
+def abrir_mecanico():
+    subprocess.Popen(["python", "Mecanico.py"])
+    window.destroy()
+
+def abrir_proveedor():
+    subprocess.Popen(["python", "Proveedor.py"])
+    window.destroy()
 
 window = Tk()
 
@@ -220,7 +244,7 @@ button_7 = Button(
     image=button_image_7,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_7 clicked"),
+    command=abrir_inventario,
     relief="flat"
 )
 button_7.place(
@@ -236,7 +260,7 @@ button_8 = Button(
     image=button_image_8,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_8 clicked"),
+    command=abrir_cliente,
     relief="flat"
 )
 button_8.place(
@@ -252,7 +276,7 @@ button_9 = Button(
     image=button_image_9,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_9 clicked"),
+    command=abrir_servicio,
     relief="flat"
 )
 button_9.place(
@@ -268,7 +292,7 @@ button_10 = Button(
     image=button_image_10,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_10 clicked"),
+    command=abrir_reserva,
     relief="flat"
 )
 button_10.place(
@@ -284,7 +308,7 @@ button_11 = Button(
     image=button_image_11,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_11 clicked"),
+    command=abrir_mecanico,
     relief="flat"
 )
 button_11.place(
@@ -300,7 +324,7 @@ button_12 = Button(
     image=button_image_12,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_12 clicked"),
+    command=abrir_proveedor,
     relief="flat"
 )
 button_12.place(
