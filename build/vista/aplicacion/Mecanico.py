@@ -6,7 +6,7 @@ from pathlib import Path
 
 # from tkinter import *
 # Explicit imports to satisfy Flake8
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, ttk
 import tkinter as tk
 
 def mostrar_ventana5():
@@ -18,20 +18,14 @@ def mostrar_ventana5():
     def relative_to_assets(path: str) -> Path:
         return ASSETS_PATH / Path(path)
 
-    # Lista para almacenar los datos ingresados en los Entry
-    datos_entrada = []
-
     def agregar_texto():
-        # Obtener valores de todas las entradas
         valores = [
-            entry_1.get(),
-            entry_2.get(),
-            entry_3.get(),
-            entry_4.get(),
+        entry_1.get(),
+        entry_2.get(),
+        entry_3.get(),
+        entry_4.get()
         ]
-        # Guardar en la lista
-        datos_entrada.append(valores)
-        print("Datos guardados:", datos_entrada)  # Mostrar en consola
+        table.insert("", "end", values=valores)
 
     def abrir_inventario():
         import Inventario
@@ -368,11 +362,25 @@ def mostrar_ventana5():
         596.0,
         fill="#FFC107",
         outline="")
+    
+    column=('Código de mecánico', 'Nombre del mecánico', 'Especialidad','Taller')
+    table = ttk.Treeview(window, columns=column, show='headings')
+    table.heading('Código de mecánico', text='Código de mecánico')
+    table.heading('Nombre del mecánico', text='Nombre del mecánico')
+    table.heading('Especialidad', text='Especialidad')
+    table.heading('Taller', text='Taller')
+    table.place(x=248.0, y=340.0, width=704.0, height=256.0)
+    #Posicion de las tablas
+    table.column('Código de mecánico', width=150, anchor='center')
+    table.column('Nombre del mecánico', width=150, anchor='center')
+    table.column('Especialidad', width=150, anchor='center')
+    table.column('Taller', width=150, anchor='center')
+
 
     entry_image_1 = PhotoImage(
         file=relative_to_assets("entry_1.png"))
     entry_bg_1 = canvas.create_image(
-        499.5,
+        499.5,  
         58.0,
         image=entry_image_1
     )

@@ -14,7 +14,14 @@ def mostrar_ventana8():
 
     def relative_to_assets(path: str) -> Path:
         return ASSETS_PATH / Path(path)
-
+    def agregar_texto():
+        valores = [
+        entry_1.get(),
+        entry_2.get(),
+        entry_3.get(),
+        entry_4.get(),
+        ]
+        table.insert("", "end", values=valores)
     def abrir_reserva():
         window.destroy()
         Reserva.mostrar_ventana7()
@@ -249,6 +256,20 @@ def mostrar_ventana8():
         37.0,
         fill="#006DB2",
         outline="")
+    
+    column=("Código de reserva", "Código Taller", "Mecánico ID", "Servicio Reservado")
+    table = tk.Treeview(window, columns=column, show='headings')
+    table.heading("Código de reserva", text="Código de reserva")
+    table.heading("Código Taller", text="Código Taller")
+    table.heading("Mecánico ID", text="Mecánico ID")
+    table.heading("Servicio Reservado", text="Servicio Reservado")
+    table.place(x=0, y=420)
+    #Posicion de la ventana
+    table.column("Código de reserva", minwidth=0, width=150)
+    table.column("Código Taller", minwidth=0, width=150)
+    table.column("Mecánico ID", minwidth=0, width=150)
+    table.column("Servicio Reservado", minwidth=0, width=150)
+
 
     button_image_6 = PhotoImage(
         file=relative_to_assets("button_6.png"))

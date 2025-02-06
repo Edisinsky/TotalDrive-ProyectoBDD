@@ -2,7 +2,7 @@ from pathlib import Path
 
 # from tkinter import *
 # Explicit imports to satisfy Flake8
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, ttk
 import tkinter as tk
 import Vehiculo
 import Cliente
@@ -19,20 +19,14 @@ def mostrar_ventana6():
     def relative_to_assets(path: str) -> Path:
         return ASSETS_PATH / Path(path)
 
-    # Lista para almacenar los datos ingresados en los Entry
-    datos_entrada = []
-
     def agregar_texto():
-        # Obtener valores de todas las entradas
         valores = [
-            entry_1.get(),
-            entry_2.get(),
-            entry_3.get(),
-            entry_4.get()
+        entry_1.get(),
+        entry_2.get(),
+        entry_3.get(),
+        entry_4.get()
         ]
-        # Guardar en la lista
-        datos_entrada.append(valores)
-        print("Datos guardados:", datos_entrada)  # Mostrar en consola
+        table.insert("", "end", values=valores)
 
     def abrir_inventario():
         import Inventario
@@ -361,6 +355,20 @@ def mostrar_ventana6():
         594.0,
         fill="#DC070B",
         outline="")
+
+    column=( "Código de proveedor", "Nombre del proveedor", "Teléfono del proveedor", "Correo del proveedor")
+    table = ttk.Treeview(window, columns=column, show='headings')
+    table.place(x=248.0, y=338.0, width=704.0, height=256.0)
+    table.heading("Código de proveedor", text="Código de proveedor")
+    table.heading("Nombre del proveedor", text="Nombre del proveedor")
+    table.heading("Teléfono del proveedor", text="Teléfono del proveedor")
+    table.heading("Correo del proveedor", text="Correo del proveedor")
+    #Posicion de las columnas
+    table.column("Código de proveedor", anchor="center", width="150")
+    table.column("Nombre del proveedor", anchor="center", width="150")
+    table.column("Teléfono del proveedor", anchor="center", width="150")
+    table.column("Correo del proveedor", anchor="center", width="150")
+
 
     entry_image_1 = PhotoImage(
         file=relative_to_assets("entry_1.png"))
