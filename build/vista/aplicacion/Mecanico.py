@@ -5,13 +5,14 @@
 
 from pathlib import Path
 
+
+from build.service.MecanicoEntity import MecanicoEntity
 # from tkinter import *
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 import subprocess
 
-from build.service.MecanicoEntity import MecanicoEntity
-
+mecanicos = MecanicoEntity()
 OUTPUT_PATH = Path(__file__).parent
 
 # Definir la ruta relativa a la carpeta de assets
@@ -167,7 +168,7 @@ button_2 = Button(
     image=button_image_2,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_2 clicked"),
+    command=lambda: mecanicos.crear_mecanico(11, 1, "Diseño","Juan Perez"),
     relief="flat"
 )
 button_2.place(
@@ -490,3 +491,17 @@ button_15.place(
 )
 window.resizable(False, False)
 window.mainloop()
+
+
+
+def crear_mecanico():
+    mecanico_id = entry_1.get()
+    id_taller = entry_2.get()
+    especialidad = entry_3.get()
+    nombre_completo_mecanico = entry_4.get()
+
+    if mecanico_id and nombre_completo_mecanico and especialidad and id_taller:
+        MecanicoEntity.crear_mecanico(nombre_completo_mecanico, especialidad, id_taller, mecanico_id)
+        print(f"Mecánico {nombre_completo_mecanico} creado exitosamente.")
+    else:
+        print("Todos los campos son obligatorios.")

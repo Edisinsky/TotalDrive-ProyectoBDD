@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 
 # Datos de conexión (ajusta los valores según tu configuración)
@@ -47,3 +47,10 @@ except Exception as e:
 finally:
     # Cerrar la sesión después de la verificación
     session_quito.close()
+
+def get_db():
+    db = SessionQuito()  # Se crea una nueva sesión en cada solicitud
+    try:
+        yield db
+    finally:
+        db.close()  # Se cierra la sesión después de usarla
