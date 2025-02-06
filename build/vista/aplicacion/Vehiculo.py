@@ -1,5 +1,5 @@
 from pathlib import Path
-from tkinter import Tk, Canvas, Entry, Button, PhotoImage
+from tkinter import Tk, Canvas, Entry, Button, PhotoImage,ttk
 import Cliente
 import Servicio
 import Reserva
@@ -15,20 +15,14 @@ def mostrar_ventana2():
     def relative_to_assets(path: str) -> Path:
         return ASSETS_PATH / Path(path)
 
-    # Lista para almacenar los datos ingresados en los Entry
-    datos_entrada = []
-
     def agregar_texto():
-        # Obtener valores de todas las entradas
         valores = [
-            entry_2.get(),
-            entry_3.get(),
-            entry_4.get(),
-            entry_5.get()
+        entry_2.get(),
+        entry_3.get(),
+        entry_4.get(),
+        entry_5.get()
         ]
-        # Guardar en la lista
-        datos_entrada.append(valores)
-        print("Datos guardados:", datos_entrada)  # Mostrar en consola
+        table.insert("", "end", values=valores)
 
     def abrir_inventario():
         import Inventario
@@ -387,6 +381,19 @@ def mostrar_ventana2():
         583.0,
         fill="#7879F1",
         outline="")
+
+    columns=('Modelo', 'Marca', 'Propietario', 'Placa')
+    table = ttk.Treeview(window, columns=columns, show='headings')
+    table.heading('Modelo', text='Modelo')
+    table.heading('Marca', text='Marca')
+    table.heading('Propietario', text='Propietario')
+    table.heading('Placa', text='Placa')
+    table.place(x=248.0, y=327.0, width=704.0, height=256.0)
+    #Tabla Posición
+    table.column('Modelo', anchor='center', width=175)
+    table.column('Marca', anchor='center', width=175)
+    table.column('Propietario', anchor='center', width=175)
+    table.column('Placa', anchor='center', width=175)
 
     entry_image_2 = PhotoImage(
         file=relative_to_assets("entry_2.png"))

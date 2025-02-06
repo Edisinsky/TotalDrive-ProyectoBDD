@@ -16,7 +16,6 @@ import Vehiculo
 #############################
 #creacion de funciones
 #############################
-
 def mostrar_ventana3():
     OUTPUT_PATH = Path(__file__).parent
 
@@ -60,55 +59,12 @@ def mostrar_ventana3():
     def abrir_proveedor():
         window.destroy()
         Proveedor.mostrar_ventana6()
-
-    #############################
-    # Funciones para la base de datos
-    #############################
+    sede='Quito'
     def cambiar_sede():
-        if estado.SEDE_ACTUAL == "Quito":
-            estado.SEDE_ACTUAL = "Cuenca"
-        else:
-            estado.SEDE_ACTUAL = "Quito"
+        global sede
         db_manager.cambiar_nodo()
-        canvas.itemconfig(texto_sede, text=f"Sede:{estado.SEDE_ACTUAL}")
-
-    def listarInventario():
-        """Ejecuta una consulta SELECT en la base de datos actual mostrando la fragmentación correspondiente."""
-
-        # Obtener el nodo actual
-        nodo_actual = db_manager.obtener_nodo_actual()
-
-        # Definir el ID de fragmentación según la sede
-        id_taller = 1 if nodo_actual == "Quito" else 2  # Quito -> 1, Cuenca -> 2
-
-        # Ejecutar la consulta filtrando por id_taller
-        consulta = "SELECT * FROM Inventario WHERE id_taller = ?"
-        resultado = db_manager.ejecutar_consulta(consulta, (id_taller,))
-
-        print(f"📌 Inventario en la sede {nodo_actual}:", resultado)
-
-    def insertarInventario(cod_repuesto, id_proveedor, nombre_repuesto, cantidad_disponible):
-        """Inserta un nuevo repuesto en la tabla Inventario según la sede actual."""
-
-        # Obtener el nodo actual y definir el id_taller
-        nodo_actual = db_manager.obtener_nodo_actual()
-        id_taller = 1 if nodo_actual == "Quito" else 2  # Quito -> 1, Cuenca -> 2
-
-        # Consulta SQL de inserción
-        consulta = """
-            INSERT INTO Inventario (cod_repuesto, id_taller, id_proveedor, nombre_repuesto, cantidad_disponible)
-            VALUES (?, ?, ?, ?, ?)
-        """
-
-        # Ejecutar la consulta con los parámetros
-        resultado = db_manager.ejecutar_consulta(consulta, (
-        cod_repuesto, id_taller, id_proveedor, nombre_repuesto, cantidad_disponible))
-
-        if "Error" in resultado:
-            print(f"❌ Error al insertar en {nodo_actual}: {resultado}")
-        else:
-            print(f"✅ Repuesto agregado a {nodo_actual}: {nombre_repuesto} con ID {cod_repuesto}")
-
+        sede=estado.SEDE_ACTUAL
+        canvas.itemconfig(texto_sede, text=f"Sede:{sede}")
     #############################
     # Ventana
     #############################
@@ -182,7 +138,7 @@ def mostrar_ventana3():
         62.0,
         96.0,
         anchor="nw",
-        text=f"Sede: {estado.SEDE_ACTUAL}",
+        text=f"Sede: {sede}",
         fill="#000000",
         font=("Inter", 13 * -1)
     )
@@ -278,7 +234,7 @@ def mostrar_ventana3():
         image=button_image_5,
         borderwidth=0,
         highlightthickness=0,
-        command=listarInventario,
+        command=lambda: print("button_5 clicked"),
         relief="flat"
     )
     button_5.place(
@@ -477,7 +433,6 @@ def mostrar_ventana3():
     table.column("Proveedor", anchor="center", width=100)
     table.column("Nombre del repuesto", anchor="center", width=100)
     table.column("Cantidad disponible", anchor="center", width=100)
-    
     table.place(x=246.0, y=325.0, width=704.0, height=256.0)
     entry_image_1 = PhotoImage(
         file=relative_to_assets("entry_1.png"))

@@ -15,37 +15,18 @@ def mostrar_ventana4():
 
     # Definir la ruta relativa a la carpeta de assets
     ASSETS_PATH = OUTPUT_PATH.parent / "assets" / "frame2"
-    # Lista para almacenar los datos ingresados en los Entry
-    datos_entrada = []
+
     def agregar_texto():
-        # Obtener valores de todas las entradas
         valores = [
-            entry_1.get(),
-            entry_2.get(),
-            entry_3.get(),
-            entry_4.get(),
+        entry_1.get(),
+        entry_2.get(),
+        entry_3.get(),
+        entry_4.get()
         ]
-        # Guardar en la lista
-        datos_entrada.append(valores)
-        print("Datos guardados:", datos_entrada)  # Mostrar en consola
+        table.insert("", "end", values=valores)
 
     def relative_to_assets(path: str) -> Path:
         return ASSETS_PATH / Path(path)
-
-     # Lista para almacenar los datos ingresados en los Entry
-    datos_entrada = []
-
-    def agregar_texto():
-        # Obtener valores de todas las entradas
-        valores = [
-            entry_1.get(),
-            entry_2.get(),
-            entry_3.get(),
-            entry_4.get(),
-        ]
-        # Guardar en la lista
-        datos_entrada.append(valores)
-        print("Datos guardados:", datos_entrada)  # Mostrar en consola
 
     def abrir_inventario():
         import Inventario
@@ -384,6 +365,21 @@ def mostrar_ventana4():
         583.0,
         fill="#15D1EE",
         outline="")
+    
+    # Crear tabla
+    column=( "Código de cliente", "Nombre del cliente", "Correo del cliente", "Teléfono del cliente")
+    table = ttk.Treeview(window, columns=column, show='headings')
+    table.heading("Código de cliente", text="Código de cliente")
+    table.heading("Nombre del cliente", text="Nombre del cliente")
+    table.heading("Correo del cliente", text="Correo del cliente")
+    table.heading("Teléfono del cliente", text="Teléfono del cliente")
+    table.place(x=248.0, y=327.0, width=704.0, height=256.0)
+    # Posicion
+    table.column("Código de cliente", anchor="center", width=150)
+    table.column("Nombre del cliente", anchor="center", width=150)
+    table.column("Correo del cliente", anchor="center", width=150)
+    table.column("Teléfono del cliente", anchor="center", width=150)
+
 
     entry_image_1 = PhotoImage(
         file=relative_to_assets("entry_1.png"))

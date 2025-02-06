@@ -2,7 +2,7 @@ from pathlib import Path
 
 # from tkinter import *
 # Explicit imports to satisfy Flake8
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, ttk
 import tkinter as tk
 import Vehiculo
 import Cliente
@@ -20,21 +20,16 @@ def mostrar_ventana7():
     def relative_to_assets(path: str) -> Path:
         return ASSETS_PATH / Path(path)
 
-    # Lista para almacenar los datos ingresados en los Entry
-    datos_entrada = []
-
     def agregar_texto():
-        # Obtener valores de todas las entradas
         valores = [
-            entry_1.get(),
-            entry_2.get(),
-            entry_3.get(),
-            entry_4.get(),
-            entry_6.get()
+        entry_1.get(),
+        entry_2.get(),
+        entry_4.get(),
+        entry_3.get(),
+        entry_6.get()
         ]
-        # Guardar en la lista
-        datos_entrada.append(valores)
-        print("Datos guardados:", datos_entrada)  # Mostrar en consola
+        table.insert("", "end", values=valores)
+
 
     def abrir_servicio_reservado():
         window.destroy()
@@ -383,6 +378,23 @@ def mostrar_ventana7():
         596.0,
         fill="#9DF478",
         outline="")
+
+    column=( "Código de reserva", "Placa de vehículo", "Fecha de reserva", "Código Taller", "Estado")
+    table = ttk.Treeview(window, columns=column, show='headings')
+    table.heading("Código de reserva", text="Código de reserva")
+    table.heading("Placa de vehículo", text="Placa de vehículo")
+    table.heading("Fecha de reserva", text="Fecha de reserva")
+    table.heading("Código Taller", text="Código Taller")
+    table.heading("Estado", text="Estado")
+    table.place(x=248.0, y=340.0, width=704.0, height=256.0)
+    #Posicion de las columnas
+    table.column("Código de reserva", anchor="center", width=150)
+    table.column("Placa de vehículo", anchor="center", width=150)
+    table.column("Fecha de reserva", anchor="center", width=150)
+    table.column("Código Taller", anchor="center", width=150)
+    table.column("Estado", anchor="center", width=100)
+
+
 
     entry_image_1 = PhotoImage(
         file=relative_to_assets("entry_1.png"))
