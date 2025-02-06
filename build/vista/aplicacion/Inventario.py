@@ -331,6 +331,7 @@ def mostrar_ventana3():
         command=abrir_servicio,
         relief="flat"
     )
+    
     button_11.place(
         x=5.0,
         y=327.0,
