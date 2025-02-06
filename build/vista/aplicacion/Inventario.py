@@ -1,10 +1,9 @@
 from pathlib import Path
 
-
 # Explicit imports to satisfy Flake8
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage,ttk
 import estado
-from db_manager import DatabaseManager
+# from db_manager import DatabaseManager
 import Cliente
 import Servicio
 import Reserva
@@ -13,7 +12,7 @@ import Proveedor
 import Vehiculo
 
 #Crear la intancia del dba
-db_manager = DatabaseManager()
+# db_manager = DatabaseManager()
 #############################
 #creacion de funciones
 #############################
@@ -27,26 +26,19 @@ def mostrar_ventana3():
     def relative_to_assets(path: str) -> Path:
         return ASSETS_PATH / Path(path)
 
-    # Lista para almacenar los datos ingresados en los Entry
-    datos_entrada = []
-
     def agregar_texto():
-        # Obtener valores de todas las entradas
         valores = [
-            entry_1.get(),
-            entry_2.get(),
-            entry_3.get(),
-            entry_4.get(),
-            entry_5.get()
+        entry_1.get(),
+        entry_2.get(),
+        entry_4.get(),
+        entry_5.get(),
+        entry_3.get()
         ]
-        # Guardar en la lista
-        datos_entrada.append(valores)
-        print("Datos guardados:", datos_entrada)  # Mostrar en consola
+        table.insert("", "end", values=valores)
 
     def abrir_vehiculo():
         window.destroy()
         Vehiculo.mostrar_ventana2()
-        
 
     def abrir_cliente():
 
@@ -393,7 +385,6 @@ def mostrar_ventana3():
         command=abrir_servicio,
         relief="flat"
     )
-    
     button_11.place(
         x=5.0,
         y=327.0,
@@ -472,7 +463,22 @@ def mostrar_ventana3():
         583.0,
         fill="#007AFF",
         outline="")
-    # codigo de repuesto
+    
+    columns=("Codigo de repuesto","Taller","Proveedor","Nombre del repuesto","Cantidad disponible")
+    table = ttk.Treeview(window, columns=columns, show='headings')
+    table.heading("Codigo de repuesto", text="Codrepuesto")
+    table.heading("Taller", text="Taller")
+    table.heading("Proveedor", text="Proveedor")
+    table.heading("Nombre del repuesto", text="NombreRepuesto")
+    table.heading("Cantidad disponible", text="CantDisponible")
+    # Ajustar Posicion
+    table.column("Codigo de repuesto", anchor="center", width=100)
+    table.column("Taller", anchor="center", width=100)
+    table.column("Proveedor", anchor="center", width=100)
+    table.column("Nombre del repuesto", anchor="center", width=100)
+    table.column("Cantidad disponible", anchor="center", width=100)
+    
+    table.place(x=246.0, y=325.0, width=704.0, height=256.0)
     entry_image_1 = PhotoImage(
         file=relative_to_assets("entry_1.png"))
     entry_bg_1 = canvas.create_image(
@@ -480,6 +486,8 @@ def mostrar_ventana3():
         56.0,
         image=entry_image_1
     )
+    
+    
     entry_1 = Entry(
         bd=0,
         bg="#A3CEEF",
@@ -586,7 +594,8 @@ def mostrar_ventana3():
     )
     window.resizable(False, False)
     window.mainloop()
-booleano = True
-if booleano:
+
+bool = True
+if bool:
     mostrar_ventana3()
-    booleano = False
+    bool = False
