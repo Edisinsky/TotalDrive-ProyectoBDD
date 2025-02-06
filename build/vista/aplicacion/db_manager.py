@@ -45,31 +45,27 @@ class DatabaseManager:
         """Devuelve el nombre de la sede actual."""
         return estado.SEDE_ACTUAL
 
-    def ejecutar_consulta(self, consulta, parametros=None, modificar=False):
-        """
+    def ejecutar_consulta(self, consulta, parametros=None):
+        """Ejecuta una consulta SQL. Si es SELECT, devuelve resultados. Si es INSERT, UPDATE o DELETE, confirma cambios."""
 
-        - `consulta`: La consulta SQL como string.
-        - `parametros`: Tupla con los valores de los parámetros (si la consulta tiene `?` en lugar de valores fijos).
-        - `modificar`: Booleano, si es `True`, ejecuta `INSERT`, `UPDATE` o `DELETE` y confirma los cambios.
-
-        Retorna los resultados si es un SELECT, o `True` si fue una modificación exitosa.
-        """
         if not self.conexion:
-            return "❌ Sin conexión a la base de datos"
+            return "❌ Sin conexión"
 
         try:
             cursor = self.conexion.cursor()
             if parametros:
-                cursor.execute(consulta, parametros)
+                cursor.execute(consulta, parametros)  # Usa parámetros si se pasan
             else:
                 cursor.execute(consulta)
 
-            if modificar:
-                self.conexion.commit()  # Confirma cambios en la BD
-                return True
+            # Si la consulta es SELECT, retorna los resultados
+            if consulta.strip().upper().startswith("SELECT"):
+                resultado = cursor.fetchall()
+                return resultado if resultado else "No hay datos"
 
-            resultado = cursor.fetchall()  # Obtener todas las filas
-            return resultado if resultado else "No hay datos"
+            # Si la consulta es INSERT, UPDATE o DELETE, confirma cambios
+            self.conexion.commit()
+            return "✅ Consulta ejecutada con éxito"
 
         except Exception as e:
             return f"❌ Error en la consulta: {e}"

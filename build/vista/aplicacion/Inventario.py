@@ -27,11 +27,11 @@ def mostrar_ventana3():
 
     def agregar_texto():
         valores = [
-        entry_1.get(),
-        entry_2.get(),
-        entry_4.get(),
-        entry_5.get(),
-        entry_3.get()
+        txt_cod_repuesto.get(),
+        txt_id_taller.get(),
+        txt_prov.get(),
+        txt_nombre_repuesto.get(),
+        txt_cantidad_disponible.get()
         ]
         table.insert("", "end", values=valores)
 
@@ -84,19 +84,15 @@ def mostrar_ventana3():
 
         print(f"📌 Inventario en la sede {nodo_actual}:", resultado)
 
-    def insertarInventario(cod_repuesto, id_proveedor, nombre_repuesto, cantidad_disponible):
+    def insertarInventario(cod_repuesto, id_taller, id_proveedor, nombre_repuesto, cantidad_disponible):
         """Inserta un nuevo repuesto en la tabla Inventario según la sede actual."""
-
-        # Obtener el nodo actual y definir el id_taller
-        nodo_actual = db_manager.obtener_nodo_actual()
-        id_taller = 1 if nodo_actual == "Quito" else 2  # Quito -> 1, Cuenca -> 2
-
         # Consulta SQL de inserción
+        nodo_actual = db_manager.obtener_nodo_actual()
         consulta = """
             INSERT INTO Inventario (cod_repuesto, id_taller, id_proveedor, nombre_repuesto, cantidad_disponible)
             VALUES (?, ?, ?, ?, ?)
         """
-
+        print(cod_repuesto, id_taller, id_proveedor, nombre_repuesto, cantidad_disponible)
         # Ejecutar la consulta con los parámetros
         resultado = db_manager.ejecutar_consulta(consulta, (
         cod_repuesto, id_taller, id_proveedor, nombre_repuesto, cantidad_disponible))
@@ -105,6 +101,46 @@ def mostrar_ventana3():
             print(f"❌ Error al insertar en {nodo_actual}: {resultado}")
         else:
             print(f"✅ Repuesto agregado a {nodo_actual}: {nombre_repuesto} con ID {cod_repuesto}")
+
+    def eliminarInventario(cod_repuesto, id_proveedor,id_taller):
+        """Elimina un repuesto de la tabla Inventario según la sede actual."""
+        nodo_actual = db_manager.obtener_nodo_actual()
+        # Consulta SQL para eliminar el repuesto
+        consulta = """
+            set XACT_ABORT ON
+            DELETE FROM Inventario
+            WHERE cod_repuesto = ? AND id_proveedor = ? AND id_taller = ?
+        """
+
+        # Ejecutar la consulta con los parámetros
+        resultado = db_manager.ejecutar_consulta(consulta, (
+            cod_repuesto, id_proveedor, id_taller))
+
+        if "Error" in resultado:
+            print(f"❌ Error al eliminar en {nodo_actual}: {resultado}")
+        else:
+            print(f"✅ Repuesto con ID {cod_repuesto} eliminado de {nodo_actual}.")
+
+    def actualizarInventario(cod_repuesto, id_proveedor, nombre_repuesto, cantidad_disponible,id_taller):
+        """Actualiza un repuesto en la tabla Inventario según la sede actual."""
+        nodo_actual = db_manager.obtener_nodo_actual()
+
+        # Consulta SQL para actualizar el repuesto
+        consulta = """
+            set XACT_ABORT ON
+            UPDATE Inventario
+            SET nombre_repuesto = ?, cantidad_disponible = ?
+            WHERE cod_repuesto = ? AND id_proveedor = ? AND id_taller = ?
+        """
+
+        # Ejecutar la consulta con los parámetros
+        resultado = db_manager.ejecutar_consulta(consulta, (
+            nombre_repuesto, cantidad_disponible, cod_repuesto, id_proveedor, id_taller))
+
+        if "Error" in resultado:
+            print(f"❌ Error al actualizar en {nodo_actual}: {resultado}")
+        else:
+            print(f"✅ Repuesto con ID {cod_repuesto} actualizado en {nodo_actual}.")
 
     #############################
     # Ventana
@@ -227,7 +263,7 @@ def mostrar_ventana3():
         image=button_image_2,
         borderwidth=0,
         highlightthickness=0,
-        command=agregar_texto,
+        command=lambda :insertarInventario(txt_cod_repuesto.get(),txt_id_taller.get(), txt_prov.get(), txt_nombre_repuesto.get(), txt_cantidad_disponible.get()),
         relief="flat"
     )
     button_2.place(
@@ -243,7 +279,7 @@ def mostrar_ventana3():
         image=button_image_3,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_3 clicked"),
+        command=lambda: actualizarInventario(txt_cod_repuesto.get(),txt_prov.get(),txt_nombre_repuesto.get(),txt_cantidad_disponible.get(),txt_id_taller.get()),
         relief="flat"
     )
     button_3.place(
@@ -259,7 +295,7 @@ def mostrar_ventana3():
         image=button_image_4,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_4 clicked"),
+        command=lambda: eliminarInventario(txt_cod_repuesto.get(),txt_prov.get(),txt_id_taller.get()),
         relief="flat"
     )
     button_4.place(
@@ -486,13 +522,13 @@ def mostrar_ventana3():
     )
     
     
-    entry_1 = Entry(
+    txt_cod_repuesto = Entry(
         bd=0,
         bg="#A3CEEF",
         fg="#000716",
         highlightthickness=0
     )
-    entry_1.place(
+    txt_cod_repuesto.place(
         x=443.0,
         y=43.0,
         width=141.0,
@@ -506,14 +542,14 @@ def mostrar_ventana3():
         101.0,
         image=entry_image_2
     )
-    entry_2 = Entry(
+    txt_id_taller = Entry(
         bd=0,
         bg="#A3CEEF",
         fg="#000716",
         highlightthickness=0
     )
 
-    entry_2.place(
+    txt_id_taller.place(
         x=443.0,
         y=88.0,
         width=141.0,
@@ -527,13 +563,13 @@ def mostrar_ventana3():
         102.0,
         image=entry_image_3
     )
-    entry_3 = Entry(
+    txt_cantidad_disponible = Entry(
         bd=0,
         bg="#A3CEEF",
         fg="#000716",
         highlightthickness=0
     )
-    entry_3.place(
+    txt_cantidad_disponible.place(
         x=763.0,
         y=89.0,
         width=70.0,
@@ -548,13 +584,13 @@ def mostrar_ventana3():
         149.0,
         image=entry_image_4
     )
-    entry_4 = Entry(
+    txt_prov = Entry(
         bd=0,
         bg="#A3CEEF",
         fg="#000716",
         highlightthickness=0
     )
-    entry_4.place(
+    txt_prov.place(
         x=443.0,
         y=136.0,
         width=141.0,
@@ -569,15 +605,15 @@ def mostrar_ventana3():
         56.0,
         image=entry_image_5
     )
-    entry_5 = Entry(
+    txt_nombre_repuesto = Entry(
         bd=0,
         bg="#A3CEEF",
         fg="#000716",
         highlightthickness=0
     )
-    valor = entry_5.get()
+    valor = txt_nombre_repuesto.get()
 
-    entry_5.place(
+    txt_nombre_repuesto.place(
         x=772.0,
         y=43.0,
         width=141.0,
