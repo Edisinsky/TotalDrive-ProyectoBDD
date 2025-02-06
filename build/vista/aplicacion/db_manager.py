@@ -1,6 +1,6 @@
 import pyodbc
 from config import NODOS
-# from build.vista.aplicacion import estado
+import estado
 
 
 class DatabaseManager:

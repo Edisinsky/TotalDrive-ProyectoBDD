@@ -3,7 +3,7 @@ from pathlib import Path
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage,ttk
 import estado
-# from db_manager import DatabaseManager
+from db_manager import DatabaseManager
 import Cliente
 import Servicio
 import Reserva
@@ -11,8 +11,7 @@ import Mecanico
 import Proveedor
 import Vehiculo
 
-#Crear la intancia del dba
-# db_manager = DatabaseManager()
+
 #############################
 #creacion de funciones
 #############################
@@ -64,17 +63,15 @@ def mostrar_ventana3():
     #############################
     # Funciones para la base de datos
     #############################
+    # Crear la intancia del dba
+    db_manager = DatabaseManager()
+
     def cambiar_sede():
-        if estado.SEDE_ACTUAL == "Quito":
-            estado.SEDE_ACTUAL = "Cuenca"
-        else:
-            estado.SEDE_ACTUAL = "Quito"
         db_manager.cambiar_nodo()
         canvas.itemconfig(texto_sede, text=f"Sede:{estado.SEDE_ACTUAL}")
 
     def listarInventario():
         """Ejecuta una consulta SELECT en la base de datos actual mostrando la fragmentación correspondiente."""
-
         # Obtener el nodo actual
         nodo_actual = db_manager.obtener_nodo_actual()
 
@@ -154,6 +151,7 @@ def mostrar_ventana3():
     # SEDE
     button_image_1 = PhotoImage(
         file=relative_to_assets("button_1.png"))
+
     button_1 = Button(
         image=button_image_1,
         borderwidth=0,
