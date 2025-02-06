@@ -40,6 +40,36 @@ class DatabaseManager:
         self.indice_nodo = self.obtener_indice_sede()
         return self.conectar()
 
+
     def obtener_nodo_actual(self):
         """Devuelve el nombre de la sede actual."""
         return estado.SEDE_ACTUAL
+
+    def ejecutar_consulta(self, consulta, parametros=None, modificar=False):
+        """
+
+        - `consulta`: La consulta SQL como string.
+        - `parametros`: Tupla con los valores de los parámetros (si la consulta tiene `?` en lugar de valores fijos).
+        - `modificar`: Booleano, si es `True`, ejecuta `INSERT`, `UPDATE` o `DELETE` y confirma los cambios.
+
+        Retorna los resultados si es un SELECT, o `True` si fue una modificación exitosa.
+        """
+        if not self.conexion:
+            return "❌ Sin conexión a la base de datos"
+
+        try:
+            cursor = self.conexion.cursor()
+            if parametros:
+                cursor.execute(consulta, parametros)
+            else:
+                cursor.execute(consulta)
+
+            if modificar:
+                self.conexion.commit()  # Confirma cambios en la BD
+                return True
+
+            resultado = cursor.fetchall()  # Obtener todas las filas
+            return resultado if resultado else "No hay datos"
+
+        except Exception as e:
+            return f"❌ Error en la consulta: {e}"
