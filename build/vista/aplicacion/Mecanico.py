@@ -6,13 +6,15 @@
 from pathlib import Path
 
 
-from build.service.MecanicoEntity import MecanicoEntity
+
 # from tkinter import *
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 import subprocess
+from build.service.MecanicoEntity import MecanicoEntity
 
 mecanicos = MecanicoEntity()
+
 OUTPUT_PATH = Path(__file__).parent
 
 # Definir la ruta relativa a la carpeta de assets
@@ -184,7 +186,7 @@ button_3 = Button(
     image=button_image_3,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_3 clicked"),
+    command=lambda: mecanicos.actualizar_mecanico(9, 1, "Diseño","Juan Perez"),
     relief="flat"
 )
 button_3.place(
@@ -200,7 +202,7 @@ button_4 = Button(
     image=button_image_4,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_4 clicked"),
+    command=lambda: mecanicos.eliminar_mecanico(5),
     relief="flat"
 )
 button_4.place(

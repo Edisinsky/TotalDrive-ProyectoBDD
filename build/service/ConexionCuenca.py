@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 
 # Datos de conexión (ajusta los valores según tu configuración)
@@ -20,12 +20,33 @@ PASSWORD_CUENCA = "1234"
 #DB_URL_QUITO = f"mssql+pyodbc://{USERNAME}:{PASSWORD}@{SERVER_QUITO}/{DATABASE_QUITO}?driver={DB_DRIVER}"
 DB_URL_CUENCA = f"mssql+pyodbc://{USERNAME_CUENCA}:{PASSWORD_CUENCA}@{SERVER_CUENCA}/{DATABASE_CUENCA}?driver={DB_DRIVER}"
 
-# Crear los motores de conexión
-#engine_quito = create_engine(DB_URL_QUITO)
-engine_cuenca = create_engine(DB_URL_CUENCA)
+try:
+        # Crear los motores de conexión
+        #engine_quito = create_engine(DB_URL_QUITO)
+        engine_cuenca = create_engine(DB_URL_CUENCA)
 
-# Crear las sesiones para interactuar con la base de datos
-#SessionQuito = sessionmaker(bind=engine_quito)
-SessionCuenca = sessionmaker(bind=engine_cuenca)
-#session_quito = SessionQuito()
-session_cuenca = SessionCuenca()
+        # Crear las sesiones para interactuar con la base de datos
+        #SessionQuito = sessionmaker(bind=engine_quito)
+        SessionCuenca = sessionmaker(bind=engine_cuenca)
+        #session_quito = SessionQuito()
+        session_cuenca = SessionCuenca()
+
+        result = session_cuenca.execute(text("SELECT * FROM Mecanico")).fetchall()
+        print(result)
+        print(f"✅ Conexión exitosa a {DATABASE_CUENCA} en {SERVER_CUENCA}")
+
+except Exception as e:
+        print(f"❌ Error al conectar con {DATABASE_CUENCA}: {e}")
+
+finally:
+        # Cerrar la sesión después de la verificación
+        session_cuenca.close()
+
+
+
+def get_sb():
+    sb = SessionCuenca()  # Se crea una nueva sesión en cada solicitud
+    try:
+        yield sb
+    finally:
+        sb.close()  # Se cierra la sesión después de usarla
