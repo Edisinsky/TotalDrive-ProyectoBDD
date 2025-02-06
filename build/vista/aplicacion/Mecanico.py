@@ -5,15 +5,11 @@
 
 from pathlib import Path
 
-
-from build.service.MecanicoEntity import MecanicoEntity
 # from tkinter import *
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 import subprocess
 
-mecanicos = MecanicoEntity()
-from build.vista.aplicacion.Inventario import btn_servicio
 
 OUTPUT_PATH = Path(__file__).parent
 
@@ -146,22 +142,6 @@ canvas.create_text(
     text="Especialidad:",
     fill="#000000",
     font=("Inter", 13 * -1)
-)
-
-button_image_1 = PhotoImage(
-    file=relative_to_assets("button_1.png"))
-button_1 = Button(
-    image=button_image_1,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_1 clicked"), # Aqui se ubican las respectivas funciones
-    relief="flat"
-)
-button_1.place(
-    x=279.0,
-    y=210.0,
-    width=99.0,
-    height=40.0
 )
 
 button_image_2 = PhotoImage(
