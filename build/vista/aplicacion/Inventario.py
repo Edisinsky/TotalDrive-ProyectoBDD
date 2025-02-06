@@ -454,6 +454,7 @@ entry_3.place(
 )
 entry_3.insert(0, "Cantidad disponible")
 
+<<<<<<< HEAD
 #PROVEEDOR
 entry_image_4 = PhotoImage(
     file=relative_to_assets("entry_4.png"))
@@ -510,3 +511,20 @@ image_2 = canvas.create_image(
 window.resizable(False, False)
 window.mainloop()
 >>>>>>> parent of cd0fd31 (WindowsStep)
+=======
+    entry_5.place(
+        x=772.0,
+        y=43.0,
+        width=141.0,
+        height=24.0
+    )
+    image_image_2 = PhotoImage(
+        file=relative_to_assets("image_2.png"))
+    image_2 = canvas.create_image(
+        295.0,
+        301.0,
+        image=image_image_2
+    )
+    window.resizable(False, False)
+    window.mainloop()
+>>>>>>> 945278a908e611381933bd4a0394fb5f636e30f9

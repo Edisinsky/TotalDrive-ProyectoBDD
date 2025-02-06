@@ -368,6 +368,7 @@ canvas.create_rectangle(
     fill="#7879F1",
     outline="")
 
+<<<<<<< HEAD
 entry_image_2 = PhotoImage(
     file=relative_to_assets("entry_2.png"))
 entry_bg_2 = canvas.create_image(
@@ -450,3 +451,7 @@ entry_5.place(
 window.resizable(False, False)
 window.mainloop()
 #hola
+=======
+    window.resizable(False, False)
+    window.mainloop()
+>>>>>>> 945278a908e611381933bd4a0394fb5f636e30f9

@@ -247,6 +247,7 @@ button_5.place(
     height=40.0
 )
 
+<<<<<<< HEAD
 canvas.create_rectangle(
     0.0,
     0.0,
@@ -272,3 +273,5 @@ button_6.place(
 )
 window.resizable(False, False)
 window.mainloop()
+=======
+>>>>>>> 945278a908e611381933bd4a0394fb5f636e30f9

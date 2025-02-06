@@ -411,6 +411,7 @@ entry_2.place(
     height=24.0
 )
 
+<<<<<<< HEAD
 entry_image_3 = PhotoImage(
     file=relative_to_assets("entry_3.png"))
 entry_bg_3 = canvas.create_image(
@@ -532,3 +533,22 @@ button_15.place(
 )
 window.resizable(False, False)
 window.mainloop()
+=======
+    button_image_15 = PhotoImage(
+        file=relative_to_assets("button_15.png"))
+    button_15 = Button(
+        image=button_image_15,
+        borderwidth=0,
+        highlightthickness=0,
+        command=lambda: print("button_15 clicked"),
+        relief="flat"
+    )
+    button_15.place(
+        x=2.0,
+        y=526.0,
+        width=202.0,
+        height=40.0
+    )
+    window.resizable(False, False)
+    window.mainloop()
+>>>>>>> 945278a908e611381933bd4a0394fb5f636e30f9

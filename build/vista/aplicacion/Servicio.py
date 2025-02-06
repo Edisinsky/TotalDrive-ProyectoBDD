@@ -268,6 +268,7 @@ button_9.place(
     height=34.0
 )
 
+<<<<<<< HEAD
 button_image_10 = PhotoImage(
     file=relative_to_assets("button_10.png"))
 button_10 = Button(
@@ -425,3 +426,5 @@ button_14.place(
 )
 window.resizable(False, False)
 window.mainloop()
+=======
+>>>>>>> 945278a908e611381933bd4a0394fb5f636e30f9

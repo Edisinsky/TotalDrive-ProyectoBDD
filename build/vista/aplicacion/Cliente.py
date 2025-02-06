@@ -440,6 +440,7 @@ entry_4.place(
     height=24.0
 )
 
+<<<<<<< HEAD
 image_image_2 = PhotoImage(
     file=relative_to_assets("image_2.png"))
 image_2 = canvas.create_image(
@@ -447,6 +448,9 @@ image_2 = canvas.create_image(
     285.0,
     image=image_image_2
 )
+=======
+
+>>>>>>> 945278a908e611381933bd4a0394fb5f636e30f9
 
 button_image_14 = PhotoImage(
     file=relative_to_assets("button_14.png"))
@@ -464,9 +468,13 @@ button_14.place(
     height=34.0
 )
 
+<<<<<<< HEAD
 def abrir_inventario():
     subprocess.Popen(["python", "Inventario.py"])
     window.destroy()
 
 window.resizable(False, False)
 window.mainloop()
+=======
+
+>>>>>>> 945278a908e611381933bd4a0394fb5f636e30f9
