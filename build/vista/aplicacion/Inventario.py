@@ -640,7 +640,8 @@ def mostrar_ventana3():
     table.column("Proveedor", anchor="center", width=100)
     table.column("Nombre del repuesto", anchor="center", width=200)
     table.column("Cantidad disponible", anchor="center", width=100)
-    
+
+
     table.place(x=246.0, y=325.0, width=704.0, height=256.0)
     entry_image_1 = PhotoImage(
         file=relative_to_assets("entry_1.png"))
