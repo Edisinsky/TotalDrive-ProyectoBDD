@@ -1,7 +1,8 @@
 from pathlib import Path
 
 # Explicit imports to satisfy Flake8
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage,ttk
+from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, ttk, Toplevel
+import tkinter as tk
 import estado
 from db_manager import DatabaseManager
 import Cliente
@@ -15,7 +16,34 @@ import Vehiculo
 #############################
 #creacion de funciones
 #############################
+def mostrar_mensaje(mensaje):
+    """Muestra un mensaje en una ventana emergente."""
+    ventana_mensaje = Toplevel()
+    ventana_mensaje.title("Mensaje")
+    ventana_mensaje.geometry("400x150")
 
+    # Obtener las dimensiones de la pantalla
+    screen_width = ventana_mensaje.winfo_screenwidth()  # Ancho de la pantalla
+    screen_height = ventana_mensaje.winfo_screenheight()  # Alto de la pantalla
+
+    # Obtener las dimensiones de la ventana
+    window_width = 400
+    window_height = 150
+
+    # Calcular la posición para centrar la ventana
+    position_top = (screen_height // 2) - (window_height // 2)
+    position_right = (screen_width // 2) - (window_width // 2)
+
+    # Colocar la ventana en el centro de la pantalla
+    ventana_mensaje.geometry(f'{window_width}x{window_height}+{position_right}+{position_top}')
+
+    etiqueta = tk.Label(ventana_mensaje, text=mensaje, font=("Arial", 12))
+    etiqueta.pack(pady=30)
+
+    boton_cerrar = tk.Button(ventana_mensaje, text="Cerrar", command=ventana_mensaje.destroy)
+    boton_cerrar.pack()
+
+    ventana_mensaje.mainloop()
 def mostrar_ventana3():
     OUTPUT_PATH = Path(__file__).parent
 
@@ -80,13 +108,48 @@ def mostrar_ventana3():
 
         # Ejecutar la consulta filtrando por id_taller
         consulta = "SELECT * FROM Inventario WHERE id_taller = ?"
-        resultado = db_manager.ejecutar_consulta(consulta, (id_taller,))
+        resultado = db_manager.ejecutar_consulta(consulta, (id_taller))
 
-        print(f"📌 Inventario en la sede {nodo_actual}:", resultado)
+        print=(f"📌 Inventario en la sede {nodo_actual}:", resultado)
+
+        # Limpiar los datos previos de la tabla (si existen)
+        for item in table.get_children():
+            table.delete(item)
+
+        # Verificar si hay resultados
+        if isinstance(resultado, list) and len(resultado) > 0:
+            # Insertar cada fila de resultados en la tabla
+            for fila in resultado:
+                # Asegurarse de que el nombre_repuesto no tenga un formato incorrecto
+                cod_repuesto, id_taller, id_proveedor, nombre_repuesto, cantidad_disponible = fila
+                nombre_repuesto = str(
+                    nombre_repuesto).strip()  # Asegura que sea una cadena y limpia espacios innecesarios
+
+                # Asegúrate de que todos los valores estén alineados correctamente con las columnas
+                valores_fila = (cod_repuesto, id_taller, id_proveedor, nombre_repuesto, cantidad_disponible)
+                table.insert("", "end", values=valores_fila)
+        else:
+            print("No se encontraron resultados.")
+
+
+
 
     def insertarInventario(cod_repuesto, id_taller, id_proveedor, nombre_repuesto, cantidad_disponible):
         """Inserta un nuevo repuesto en la tabla Inventario según la sede actual."""
         # Consulta SQL de inserción
+        try:
+            id_taller = int(id_taller)
+        except ValueError:
+            mensaje = "El id del taller debe ser un número entero"
+            mostrar_mensaje(mensaje)
+            return
+
+        # Comparar después de asegurarnos que es un entero
+        if id_taller > 2 or id_taller < 1:
+            mensaje = "El id del taller no es válido"
+            mostrar_mensaje(mensaje)
+            return
+
         nodo_actual = db_manager.obtener_nodo_actual()
         consulta = """
             INSERT INTO Inventario (cod_repuesto, id_taller, id_proveedor, nombre_repuesto, cantidad_disponible)
@@ -98,9 +161,15 @@ def mostrar_ventana3():
         cod_repuesto, id_taller, id_proveedor, nombre_repuesto, cantidad_disponible))
 
         if "Error" in resultado:
-            print(f"❌ Error al insertar en {nodo_actual}: {resultado}")
+            mensaje = f"❌ Error al insertar en {nodo_actual}"
+            print(resultado)
         else:
-            print(f"✅ Repuesto agregado a {nodo_actual}: {nombre_repuesto} con ID {cod_repuesto}")
+            mensaje = f"✅ Repuesto agregado a {nodo_actual}: {nombre_repuesto} con ID {cod_repuesto}"
+
+        mostrar_mensaje(mensaje)
+
+
+
 
     def eliminarInventario(cod_repuesto, id_proveedor,id_taller):
         """Elimina un repuesto de la tabla Inventario según la sede actual."""
@@ -117,13 +186,29 @@ def mostrar_ventana3():
             cod_repuesto, id_proveedor, id_taller))
 
         if "Error" in resultado:
-            print(f"❌ Error al eliminar en {nodo_actual}: {resultado}")
+            mensaje=f"❌ Error al eliminar en {nodo_actual}"
+            print(resultado)
+
         else:
-            print(f"✅ Repuesto con ID {cod_repuesto} eliminado de {nodo_actual}.")
+            mensaje=f"✅ Repuesto con ID {cod_repuesto} eliminado de {nodo_actual}."
+        mostrar_mensaje(mensaje)
 
     def actualizarInventario(cod_repuesto, id_proveedor, nombre_repuesto, cantidad_disponible,id_taller):
         """Actualiza un repuesto en la tabla Inventario según la sede actual."""
         nodo_actual = db_manager.obtener_nodo_actual()
+
+        try:
+            id_taller = int(id_taller)
+        except ValueError:
+            mensaje = "El id del taller debe ser un número entero"
+            mostrar_mensaje(mensaje)
+            return
+
+        # Comparar después de asegurarnos que es un entero
+        if id_taller > 2 or id_taller < 1:
+            mensaje = "El id del taller no es válido"
+            mostrar_mensaje(mensaje)
+            return
 
         # Consulta SQL para actualizar el repuesto
         consulta = """
@@ -138,9 +223,53 @@ def mostrar_ventana3():
             nombre_repuesto, cantidad_disponible, cod_repuesto, id_proveedor, id_taller))
 
         if "Error" in resultado:
-            print(f"❌ Error al actualizar en {nodo_actual}: {resultado}")
+            mensaje=f"❌ Error al actualizar en {nodo_actual}"
+            print(resultado)
+
         else:
-            print(f"✅ Repuesto con ID {cod_repuesto} actualizado en {nodo_actual}.")
+            mensaje=f"✅ Repuesto con ID {cod_repuesto} actualizado en {nodo_actual}."
+        mostrar_mensaje(mensaje)
+
+    def limpiar_campos():
+
+        txt_cod_repuesto.delete(0, "end")
+        txt_id_taller.delete(0, "end")
+        txt_prov.delete(0, "end")
+        txt_nombre_repuesto.delete(0, "end")
+        txt_cantidad_disponible.delete(0, "end")
+
+    def repuestos_stock_critico():
+        """Consulta los repuestos con stock crítico según la sede actual."""
+        # Obtener el nodo actual
+        nodo_actual = db_manager.obtener_nodo_actual()
+
+        consulta = """
+                SELECT cod_repuesto, nombre_repuesto, cantidad_disponible
+                FROM Inventario
+                WHERE cantidad_disponible < 5;
+            """
+
+        # Ejecutar la consulta usando la función de ejecución del DBManager
+        resultado = db_manager.ejecutar_consulta(consulta)
+
+        # Limpiar la tabla antes de agregar nuevos datos
+        for item in table.get_children():
+            table.delete(item)
+
+        if isinstance(resultado, list) and len(resultado) > 0:
+            # Insertar cada fila de resultados en la tabla
+            for fila in resultado:
+                # Asegurarse de que el nombre_repuesto no tenga un formato incorrecto
+                cod_repuesto, nombre_repuesto, cantidad_disponible = fila
+                nombre_repuesto = str(
+                    nombre_repuesto).strip()  # Asegura que sea una cadena y limpia espacios innecesarios
+
+                # Asegúrate de que todos los valores estén alineados correctamente con las columnas
+                valores_fila = (cod_repuesto, '-', '-', nombre_repuesto, cantidad_disponible)
+                table.insert("", "end", values=valores_fila)
+
+        return resultado
+
 
     #############################
     # Ventana
@@ -328,7 +457,7 @@ def mostrar_ventana3():
         image=button_image_6,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_6 clicked"),
+        command=repuestos_stock_critico,
         relief="flat"
     )
     button_6.place(
@@ -360,7 +489,7 @@ def mostrar_ventana3():
         image=button_image_8,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_8 clicked"),
+        command= limpiar_campos,
         relief="flat"
     )
     button_8.place(
@@ -506,10 +635,10 @@ def mostrar_ventana3():
     table.heading("Nombre del repuesto", text="NombreRepuesto")
     table.heading("Cantidad disponible", text="CantDisponible")
     # Ajustar Posicion
-    table.column("Codigo de repuesto", anchor="center", width=100)
-    table.column("Taller", anchor="center", width=100)
+    table.column("Codigo de repuesto", anchor="center", width=50)
+    table.column("Taller", anchor="center", width=50)
     table.column("Proveedor", anchor="center", width=100)
-    table.column("Nombre del repuesto", anchor="center", width=100)
+    table.column("Nombre del repuesto", anchor="center", width=200)
     table.column("Cantidad disponible", anchor="center", width=100)
     
     table.place(x=246.0, y=325.0, width=704.0, height=256.0)
