@@ -4,12 +4,12 @@ from pathlib import Path
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 import tkinter as tk
-import Vehiculo
 import Cliente
 import Servicio
 import Reserva
 import Mecanico
 import Proveedor
+import Vehiculo
 
 def mostrar_ventana3():
     OUTPUT_PATH = Path(__file__).parent
@@ -39,6 +39,7 @@ def mostrar_ventana3():
     def abrir_vehiculo():
         window.destroy()
         Vehiculo.mostrar_ventana2()
+        
 
     def abrir_cliente():
         window.destroy()
@@ -523,3 +524,7 @@ def mostrar_ventana3():
     )
     window.resizable(False, False)
     window.mainloop()
+booleano = True
+if booleano:
+    mostrar_ventana3()
+    booleano = False

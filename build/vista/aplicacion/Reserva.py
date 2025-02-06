@@ -21,6 +21,22 @@ def mostrar_ventana7():
     def relative_to_assets(path: str) -> Path:
         return ASSETS_PATH / Path(path)
 
+    # Lista para almacenar los datos ingresados en los Entry
+    datos_entrada = []
+
+    def agregar_texto():
+        # Obtener valores de todas las entradas
+        valores = [
+            entry_1.get(),
+            entry_2.get(),
+            entry_3.get(),
+            entry_4.get(),
+            entry_6.get()
+        ]
+        # Guardar en la lista
+        datos_entrada.append(valores)
+        print("Datos guardados:", datos_entrada)  # Mostrar en consola
+
     def abrir_servicio_reservado():
         window.destroy()
         Servicio_Reservado.mostrar_ventana8()
@@ -150,7 +166,7 @@ def mostrar_ventana7():
         image=button_image_1,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_1 clicked"),
+        command=agregar_texto,
         relief="flat"
     )
     button_1.place(
