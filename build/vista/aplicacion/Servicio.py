@@ -1,6 +1,5 @@
 from pathlib import Path
 from tkinter import Tk, Canvas, Entry, Button, PhotoImage
-import Inventario
 import Cliente
 import Reserva
 import Mecanico
@@ -31,6 +30,7 @@ def mostrar_ventana1():
         print("Datos guardados:", datos_entrada)  # Mostrar en consola
 
     def abrir_inventario():
+        import Inventario
         window.destroy()
         Inventario.mostrar_ventana3()
 

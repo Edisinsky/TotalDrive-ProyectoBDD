@@ -9,7 +9,6 @@ import Cliente
 import Servicio
 import Reserva
 import Mecanico
-import Inventario
 
 def mostrar_ventana6():
     OUTPUT_PATH = Path(__file__).parent
@@ -36,6 +35,7 @@ def mostrar_ventana6():
         print("Datos guardados:", datos_entrada)  # Mostrar en consola
 
     def abrir_inventario():
+        import Inventario
         window.destroy()
         Inventario.mostrar_ventana3()
 
