@@ -1,5 +1,7 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, DATETIME
 from build.models.Base import Base
+from sqlalchemy.orm import relationship
+
 
 class Proveedor(Base):
     __tablename__ = 'proveedor'

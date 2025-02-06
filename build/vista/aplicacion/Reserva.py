@@ -7,7 +7,6 @@ import tkinter as tk
 import Vehiculo
 import Cliente
 import Servicio
-import Inventario
 import Mecanico
 import Proveedor
 import Servicio_Reservado
@@ -42,6 +41,7 @@ def mostrar_ventana7():
         Servicio_Reservado.mostrar_ventana8()
 
     def abrir_inventario():
+        import Inventario
         window.destroy()
         Inventario.mostrar_ventana3()
 

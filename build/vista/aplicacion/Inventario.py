@@ -1,16 +1,21 @@
 from pathlib import Path
 
-# from tkinter import *
+
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
-import tkinter as tk
-import Vehiculo
+import estado
+from db_manager import DatabaseManager
 import Cliente
 import Servicio
 import Reserva
 import Mecanico
 import Proveedor
 
+#Crear la intancia del dba
+db_manager = DatabaseManager()
+#############################
+#creacion de funciones
+#############################
 def mostrar_ventana3():
     OUTPUT_PATH = Path(__file__).parent
 
@@ -41,6 +46,7 @@ def mostrar_ventana3():
         Vehiculo.mostrar_ventana2()
 
     def abrir_cliente():
+
         window.destroy()
         Cliente.mostrar_ventana4()
 
@@ -59,7 +65,15 @@ def mostrar_ventana3():
     def abrir_proveedor():
         window.destroy()
         Proveedor.mostrar_ventana6()
-
+    sede='Quito'
+    def cambiar_sede():
+        global sede
+        db_manager.cambiar_nodo()
+        sede=estado.SEDE_ACTUAL
+        canvas.itemconfig(texto_sede, text=f"Sede:{sede}")
+    #############################
+    # Ventana
+    #############################
     window = Tk()
 
     window.geometry("987x617")
@@ -75,7 +89,9 @@ def mostrar_ventana3():
 
     # Establecer la posición de la ventana
     window.geometry(f"987x617+{x_position}+{y_position}")
-
+    #############################
+    # Interfaz
+    #############################
     # Crear el Canvas
     canvas = Canvas(
         window,
@@ -104,9 +120,10 @@ def mostrar_ventana3():
         image=button_image_1,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_1 clicked"),
+        command=cambiar_sede,
         relief="flat"
     )
+
     button_1.place(
         x=2.0,
         y=526.0,
@@ -123,11 +140,11 @@ def mostrar_ventana3():
         font=("Inter", 13 * -1)
     )
 
-    canvas.create_text(
+    texto_sede = canvas.create_text(
         62.0,
         96.0,
         anchor="nw",
-        text="Sede: Quito",
+        text=f"Sede: {sede}",
         fill="#000000",
         font=("Inter", 13 * -1)
     )
@@ -469,7 +486,6 @@ def mostrar_ventana3():
         width=70.0,
         height=24.0
     )
-    entry_3.insert(0, "Cantidad disponible")
 
     # PROVEEDOR
     entry_image_4 = PhotoImage(
