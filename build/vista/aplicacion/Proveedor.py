@@ -468,6 +468,7 @@ def mostrar_ventana6():
     )
     window.resizable(False, False)
     window.mainloop()
-
-if 2+2 == 4:
+booleano = True
+if booleano:
     mostrar_ventana6()
+    booleano = False

@@ -268,5 +268,3 @@ def mostrar_ventana8():
     window.resizable(False, False)
     window.mainloop()
 
-if 2+2 == 4:
-    mostrar_ventana8()

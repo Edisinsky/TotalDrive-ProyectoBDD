@@ -529,6 +529,3 @@ def mostrar_ventana7():
     )
     window.resizable(False, False)
     window.mainloop()
-
-if 2+2 == 4:
-    mostrar_ventana7()

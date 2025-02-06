@@ -464,12 +464,9 @@ def mostrar_ventana4():
         height=34.0
     )
 
-    def abrir_inventario():
-        subprocess.Popen(["python", "Inventario.py"])
-        window.destroy()
+
 
     window.resizable(False, False)
     window.mainloop()
 
-if 2+2 == 4:
-    mostrar_ventana4()
+
