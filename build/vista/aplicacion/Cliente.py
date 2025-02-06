@@ -83,17 +83,17 @@ canvas.create_rectangle(
 )
 
 #BOTON 1 = SEDE
-button_image_1 = PhotoImage(
+btn_sede_img = PhotoImage(
     file=relative_to_assets("button_1.png"))
 
-button_1 = Button(
-    image=button_image_1,
+btn_sede = Button(
+    image=btn_sede_img,
     borderwidth=0,
     highlightthickness=0,
     command=lambda: print("button_1 clicked"),
     relief="flat"
 )
-button_1.place(
+btn_sede.place(
     x=0.0,
     y=534.0,
     width=202.0,
@@ -147,16 +147,16 @@ canvas.create_text(
     font=("Inter", 13 * -1)
 )
 #AGREGAR CLIENTE
-button_image_2 = PhotoImage(
+btn_agregar_image = PhotoImage(
     file=relative_to_assets("button_2.png"))
-button_2 = Button(
-    image=button_image_2,
+btn_agregar = Button(
+    image=btn_agregar_image,
     borderwidth=0,
     highlightthickness=0,
     command=lambda: print("button_2 clicked"),
     relief="flat"
 )
-button_2.place(
+btn_agregar.place(
     x=261.0,
     y=210.0,
     width=99.0,
@@ -164,64 +164,64 @@ button_2.place(
 )
 
 #ACTUALIZAR CLIENTE
-button_image_3 = PhotoImage(
+btn_actualizar_image = PhotoImage(
     file=relative_to_assets("button_3.png"))
-button_3 = Button(
-    image=button_image_3,
+btn_actualizar = Button(
+    image=btn_actualizar_image,
     borderwidth=0,
     highlightthickness=0,
     command=lambda: print("button_3 clicked"),
     relief="flat"
 )
-button_3.place(
+btn_actualizar.place(
     x=540.0,
     y=210.0,
     width=113.0,
     height=40.0
 )
 #ELIMINAR CLIENTE
-button_image_4 = PhotoImage(
+btn_eliminar_image = PhotoImage(
     file=relative_to_assets("button_4.png"))
-button_4 = Button(
-    image=button_image_4,
+btn_eliminar = Button(
+    image=btn_eliminar_image,
     borderwidth=0,
     highlightthickness=0,
     command=lambda: print("button_4 clicked"),
     relief="flat"
 )
-button_4.place(
+btn_eliminar.place(
     x=688.0,
     y=210.0,
     width=100.0,
     height=40.0
 )
 #LISTAR CLIENTES
-button_image_5 = PhotoImage(
+btn_listar_imagen = PhotoImage(
     file=relative_to_assets("button_5.png"))
-button_5 = Button(
-    image=button_image_5,
+btn_listar = Button(
+    image=btn_listar_imagen,
     borderwidth=0,
     highlightthickness=0,
     command=lambda: print("button_5 clicked"),
     relief="flat"
 )
-button_5.place(
+btn_listar.place(
     x=410.0,
     y=210.0,
     width=84.0,
     height=40.0
 )
 #LIMPIAR CAMPOS
-button_image_6 = PhotoImage(
+btn_limpiar_image = PhotoImage(
     file=relative_to_assets("button_6.png"))
-button_6 = Button(
-    image=button_image_6,
+btn_limpiar = Button(
+    image=btn_limpiar_image,
     borderwidth=0,
     highlightthickness=0,
     command=lambda: print("button_6 clicked"),
     relief="flat"
 )
-button_6.place(
+btn_limpiar.place(
     x=828.0,
     y=210.0,
     width=96.0,
@@ -239,14 +239,14 @@ image_1 = canvas.create_image(
 #Inventario
 button_image_7 = PhotoImage(
     file=relative_to_assets("button_7.png"))
-button_7 = Button(
+btn_inventario = Button(
     image=button_image_7,
     borderwidth=0,
     highlightthickness=0,
     command=abrir_inventario,
     relief="flat"
 )
-button_7.place(
+btn_inventario.place(
     x=5.0,
     y=174.0,
     width=201.0,
@@ -255,30 +255,31 @@ button_7.place(
 #cliente
 button_image_8 = PhotoImage(
     file=relative_to_assets("button_8.png"))
-button_8 = Button(
+btn_cliente = Button(
     image=button_image_8,
     borderwidth=0,
     highlightthickness=0,
     command=lambda: print("button_8 clicked"),
     relief="flat"
 )
-button_8.place(
+btn_cliente.place(
     x=5.0,
     y=275.0,
     width=201.0,
     height=34.0
 )
+
 #servicio
 button_image_9 = PhotoImage(
     file=relative_to_assets("button_9.png"))
-button_9 = Button(
+btn_servicio = Button(
     image=button_image_9,
     borderwidth=0,
     highlightthickness=0,
     command=abrir_servicio,
     relief="flat"
 )
-button_9.place(
+btn_servicio.place(
     x=5.0,
     y=327.0,
     width=201.0,
@@ -287,14 +288,14 @@ button_9.place(
 #RESERVA
 button_image_10 = PhotoImage(
     file=relative_to_assets("button_10.png"))
-button_10 = Button(
+btn_reserva = Button(
     image=button_image_10,
     borderwidth=0,
     highlightthickness=0,
     command=abrir_reserva,
     relief="flat"
 )
-button_10.place(
+btn_reserva.place(
     x=5.0,
     y=376.0,
     width=201.0,
@@ -303,14 +304,14 @@ button_10.place(
 #MECANICO
 button_image_11 = PhotoImage(
     file=relative_to_assets("button_11.png"))
-button_11 = Button(
+btn_mecanico = Button(
     image=button_image_11,
     borderwidth=0,
     highlightthickness=0,
 command=abrir_mecanico,
     relief="flat"
 )
-button_11.place(
+btn_mecanico.place(
     x=5.0,
     y=421.0,
     width=201.0,
@@ -319,14 +320,14 @@ button_11.place(
 #PROVEEDOR
 button_image_12 = PhotoImage(
     file=relative_to_assets("button_12.png"))
-button_12 = Button(
+btn_proveedor = Button(
     image=button_image_12,
     borderwidth=0,
     highlightthickness=0,
     command=abrir_proveedor,
     relief="flat"
 )
-button_12.place(
+btn_proveedor.place(
     x=5.0,
     y=473.0,
     width=201.0,
@@ -335,14 +336,14 @@ button_12.place(
 #VEHICULO
 button_image_13 = PhotoImage(
     file=relative_to_assets("button_13.png"))
-button_13 = Button(
+btn_vehiculo = Button(
     image=button_image_13,
     borderwidth=0,
     highlightthickness=0,
     command=abrir_vehiculo,
     relief="flat"
 )
-button_13.place(
+btn_vehiculo.place(
     x=5.0,
     y=226.0,
     width=201.0,
@@ -365,13 +366,13 @@ entry_bg_1 = canvas.create_image(
     image=entry_image_1
 )
 #codigo de cliente
-entry_1 = Entry(
+txt_id_cliente = Entry(
     bd=0,
     bg="#A3CEEF",
     fg="#000716",
     highlightthickness=0
 )
-entry_1.place(
+txt_id_cliente.place(
     x=443.0,
     y=43.0,
     width=141.0,
@@ -385,13 +386,13 @@ entry_bg_2 = canvas.create_image(
     107.0,
     image=entry_image_2
 )
-entry_2 = Entry(
+txt_nombre_completo_cliente = Entry(
     bd=0,
     bg="#A3CEEF",
     fg="#000716",
     highlightthickness=0
 )
-entry_2.place(
+txt_nombre_completo_cliente.place(
     x=443.0,
     y=94.0,
     width=141.0,
@@ -406,13 +407,13 @@ entry_bg_3 = canvas.create_image(
     149.0,
     image=entry_image_3
 )
-entry_3 = Entry(
+txt_correo_cliente = Entry(
     bd=0,
     bg="#A3CEEF",
     fg="#000716",
     highlightthickness=0
 )
-entry_3.place(
+txt_correo_cliente.place(
     x=443.0,
     y=136.0,
     width=141.0,
@@ -427,13 +428,13 @@ entry_bg_4 = canvas.create_image(
     56.0,
     image=entry_image_4
 )
-entry_4 = Entry(
+txt_telefono_cliente = Entry(
     bd=0,
     bg="#A3CEEF",
     fg="#000716",
     highlightthickness=0
 )
-entry_4.place(
+txt_telefono_cliente.place(
     x=770.0,
     y=43.0,
     width=141.0,
@@ -447,17 +448,17 @@ image_2 = canvas.create_image(
     285.0,
     image=image_image_2
 )
-
+#Filtro clientes con multiples reservas
 button_image_14 = PhotoImage(
     file=relative_to_assets("button_14.png"))
-button_14 = Button(
+btn_filtro_clientes_multiples = Button(
     image=button_image_14,
     borderwidth=0,
     highlightthickness=0,
     command=lambda: print("button_14 clicked"),
     relief="flat"
 )
-button_14.place(
+btn_filtro_clientes_multiples.place(
     x=376.0,
     y=271.0,
     width=217.0,
