@@ -1,2 +1,2 @@
 # estado.py
-SEDE_ACTUAL = "Quito"  # Inicialmente Quito
+SEDE_ACTUAL = "Cuenca"  # Inicialmente Quito
